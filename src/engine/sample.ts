@@ -38,7 +38,7 @@ export interface SampleDef { id: string; name: string; course: string; blurb: st
 /** Item parameters for the 40-question bank: discrimination a, difficulty b, and how attractive each distractor is. */
 function bioParams(r: () => number) {
   return BIO.map((_, j) => ({
-    a: 1.0 + r() * 1.2,
+    a: 0.7 + r() * 0.9,
     b: -1.0 + r() * 2.0,
     key: 'ABCD'[Math.floor(r() * 4)],
     w: [0.8 + r() * 0.4, 0.8 + r() * 0.4, 0.7 + r() * 0.4],
@@ -123,8 +123,8 @@ export const SAMPLES: SampleDef[] = [
     id: 'bio110', name: 'BIO 110 Intro Biology', course: 'BIO 110',
     blurb: '40-question midterm, 180 students, two terms of history. One item is miskeyed and one distractor does no work.',
     exams: () => [
-      { title: 'Midterm 1', term: 'Fall 2025', date: '2025-10-16', exam: bioExam(11, 164, 0, {}), note: 'Same 40 items, keyed correctly.' },
-      { title: 'Midterm 1', term: 'Winter 2026', date: '2026-02-19', exam: bioExam(29, 180, 0.1, { miskey: 16, nfd: 8 }), note: 'Q17 was rekeyed by mistake when the bank was edited.' },
+      { title: 'Midterm 1', term: 'Fall 2025', date: '2025-10-16', exam: bioExam(11, 164, 0.45, {}), note: 'Same 40 items, keyed correctly.' },
+      { title: 'Midterm 1', term: 'Winter 2026', date: '2026-02-19', exam: bioExam(29, 180, 0.55, { miskey: 16, nfd: 8 }), note: 'Q17 was rekeyed by mistake when the bank was edited.' },
     ],
   },
   {

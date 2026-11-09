@@ -58,7 +58,7 @@ export default function Course({ id, tab }: { id: string; tab: string }) {
     <section className="page">
       <div className="course-head">
         <div>
-          <div className="eyebrow">{p.course || 'Course'} {p.sampleId && <SyntheticBadge />}</div>
+          <div className="row gap-sm"><span className="eyebrow">{p.course || 'Course'}</span>{p.sampleId && <SyntheticBadge />}</div>
           <h1>{p.name}</h1>
           {meta && <p className="muted" style={{ margin: 0 }}>{meta.title} · {meta.term} · {fmtDate(meta.date)} · {meta.snapshot.n} students · {meta.snapshot.k} items{meta.note ? ` · ${meta.note}` : ''}</p>}
         </div>
@@ -122,7 +122,7 @@ function Flags({ s }: { s: ItemStat }) {
 
 function Overview({ a, before, meta, onOpen, sel, regradeHref, changed }: { a: Analysis; before: Analysis; meta: ExamMeta; onOpen(id: string): void; sel: string | null; regradeHref: string; changed: number }) {
   const t = a.test
-  const review = before.items.filter(i => severity(i) >= 1).sort((x, y) => severity(y) - severity(x) || x.index - y.index)
+  const review = before.items.filter(i => i.flags.length).sort((x, y) => severity(y) - severity(x) || x.index - y.index)
   const rel = t.kr20 ?? t.alpha
   const best = [...a.items].filter(i => i.alphaIfDeleted !== null && t.alpha !== null && i.alphaIfDeleted > t.alpha + 0.002).sort((x, y) => y.alphaIfDeleted! - x.alphaIfDeleted!).slice(0, 3)
   return (
@@ -132,7 +132,7 @@ function Overview({ a, before, meta, onOpen, sel, regradeHref, changed }: { a: A
         <div className="kpi"><span>{t.kr20 !== null ? 'KR-20' : 'Alpha'}</span><b>{f2(rel)}</b><small>{rel === null ? 'Not enough spread' : rel >= 0.8 ? 'Good for a classroom test' : rel >= 0.7 ? 'Acceptable' : 'Low: scores are noisy'}</small></div>
         <div className="kpi"><span>SEM</span><b>{t.sem === null ? '—' : t.sem.toFixed(1)}</b><small>points, ±{t.sem === null ? '—' : ((t.sem / (t.maxTotal || 1)) * 100).toFixed(1)}% of the scale</small></div>
         <div className="kpi"><span>Median</span><b>{((t.median / (t.maxTotal || 1)) * 100).toFixed(0)}%</b><small>Mean {t.meanPct.toFixed(1)}%, IQR {((t.q1 / t.maxTotal) * 100).toFixed(0)}–{((t.q3 / t.maxTotal) * 100).toFixed(0)}%</small></div>
-        <div className={`kpi${review.some(i => severity(i) === 2) ? ' alert' : ''}`}><span>Need review</span><b>{review.length}</b><small>{review.filter(i => severity(i) === 2).length} serious{meta.adjustments.length ? ` · ${meta.adjustments.length} regrade${meta.adjustments.length > 1 ? 's' : ''} applied` : ''}</small></div>
+        <div className={`kpi${review.some(i => severity(i) === 2) ? ' alert' : ''}`}><span>Flagged items</span><b>{review.length}</b><small>{review.filter(i => severity(i) === 2).length} serious{meta.adjustments.length ? ` · ${meta.adjustments.length} regrade${meta.adjustments.length > 1 ? 's' : ''} applied` : ''}</small></div>
       </div>
       <div className="split">
         <div className="panel">
@@ -305,13 +305,19 @@ function Regrade({ p, meta, ex, setAdj, onOpen }: { p: Project; meta: ExamMeta; 
   const note = meta.adjustments.length ? `Regraded: ${meta.adjustments.map(a => describeAdj(a, label(a.itemId))).join('; ')}.` : undefined
   const summary = classSummary(ex.analysis!, `${meta.title} (${meta.term})`, note)
   const save = (patch: Partial<ExamMeta>) => void updateExam(p, meta.id, patch)
+  const suggested = ex.before!.items.filter(i => severity(i) === 2).map(i => suggest(i, meta.items[i.index])[0]?.action).filter((a): a is Adjustment => !!a)
   const file = (s: string) => s.replace(/[^\w-]+/g, '-').replace(/-+/g, '-').toLowerCase()
 
   return (
     <>
       <div className="panel">
         <div className="panel-head"><h2>Regrade decisions</h2>{meta.adjustments.length > 0 && <button type="button" className="btn ghost sm" onClick={() => void setAdj([], 'All regrades cleared')}>Clear all</button>}</div>
-        {meta.adjustments.length === 0 ? <p className="muted">No regrades yet. Open a flagged item from the Overview or Items tab and choose drop, full credit or an extra accepted answer. Nothing changes in your LMS until you import the file below.</p> : (
+        {meta.adjustments.length === 0 ? (
+          <>
+            <p className="muted">No regrades yet. Open a flagged item from the Overview or Items tab and choose drop, full credit or an extra accepted answer. Nothing changes in your LMS until you import the file below.</p>
+            {suggested.length > 0 && <div className="row gap-sm wrap"><span className="small muted">Suggested:</span>{suggested.map(a => <button key={a.itemId} type="button" className="btn ghost sm" onClick={() => void setAdj([...meta.adjustments, a], describeAdj(a, label(a.itemId)))}>{describeAdj(a, label(a.itemId))}</button>)}</div>}
+          </>
+        ) : (
           <div className="adj-list">
             {meta.adjustments.map(a => (
               <div key={a.itemId} className="adj"><span>{describeAdj(a, label(a.itemId))} <button type="button" className="linkish small" onClick={() => onOpen(a.itemId)}>Open item</button></span>
