@@ -2,7 +2,7 @@
 
 Find broken quiz questions before grades go out. A psychometrics workbench for college instructors and instructional designers who run quizzes in Brightspace, Canvas or Moodle.
 
-**Live:** https://item-analysis.vercel.app
+**Live:** https://item-analysis-bice.vercel.app
 
 ## The pain
 LMS quiz statistics are hard to find, harder to read, and stop short of the fix. A miskeyed question quietly costs a class points; the regrade then has to land in the right gradebook column without breaking anything.
