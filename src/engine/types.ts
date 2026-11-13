@@ -6,6 +6,8 @@ export interface Item {
   /** Question text when the export includes it. Used to key the item across terms. */
   stem?: string
   maxPoints: number
+  /** Brightspace bonus question: its points add to the score but not to the maximum. */
+  bonus?: boolean
   /** Correct option letters (multiple-choice only). */
   key?: string[]
   /** Option letters seen for this item, in order. */

@@ -389,3 +389,17 @@ test('generic CSV: a blank score is 0, as the import report says', () => {
   const p = parse('Student,Q1,Q2\ns1,1,\ns2,0,1\n', { salt: 's' })
   assert.deepEqual(p.exam.attempts.map(a => a.scores), [[1, 0], [0, 1]])
 })
+
+test('Brightspace bonus question adds to the score but not to the maximum', () => {
+  const h = 'Org Defined ID,Username,FirstName,LastName,Attempt #,Q #,Q Type,Q Text,Bonus?,Answer,Answer Match,Score,Out Of'
+  const rows = [
+    ['1', 'ann', 'Ann', 'Lee', '1', '1', 'T/F', 'Water boils at 100 C at sea level', 'FALSE', 'True', 'Checked', '1', '1'],
+    ['1', 'ann', 'Ann', 'Lee', '1', '2', 'T/F', 'Bonus: the Moon has an atmosphere', 'TRUE', 'False', 'Checked', '1', '1'],
+    ['2', 'bob', 'Bob', 'Roy', '1', '1', 'T/F', 'Water boils at 100 C at sea level', 'FALSE', 'True', 'Checked', '1', '1'],
+    ['2', 'bob', 'Bob', 'Roy', '1', '2', 'T/F', 'Bonus: the Moon has an atmosphere', 'TRUE', 'True', 'Checked', '0', '1'],
+  ]
+  const ex = parse([h, ...rows.map(r => r.join(','))].join('\n'), { salt: 's' }).exam
+  assert.deepEqual(ex.items.map(i => !!i.bonus), [false, true])
+  assert.equal(analyze(ex).test.maxTotal, 1)
+  assert.deepEqual(parseCsv(brightspaceCsv(ex, [], 'Quiz', 10)).slice(1).map(r => r[2]), ['20', '10'])
+})

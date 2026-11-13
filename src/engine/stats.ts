@@ -46,10 +46,10 @@ export function rescore(exam: Exam, adj: Adjustment[]): Exam {
 
 // A null score means the student was not given the question (random pools) or it is still ungraded.
 // It counts toward neither the student's score nor their maximum.
-export const studentMax = (exam: Exam) => exam.attempts.map(s => sum(exam.items.map((it, j) => (s.scores[j] === null || s.scores[j] === undefined ? 0 : it.maxPoints))))
-/** Points on the paper: all items, or the largest set any one student was given when questions come from pools. */
+export const studentMax = (exam: Exam) => exam.attempts.map(s => sum(exam.items.map((it, j) => (it.bonus || s.scores[j] === null || s.scores[j] === undefined ? 0 : it.maxPoints))))
+/** Points on the paper: all items, or the largest set any one student was given when questions come from pools. Bonus points sit on top. */
 export const maxTotal = (exam: Exam) => {
-  const all = sum(exam.items.map(i => i.maxPoints))
+  const all = sum(exam.items.map(i => (i.bonus ? 0 : i.maxPoints)))
   return exam.attempts.length ? Math.min(all, Math.max(...studentMax(exam))) : all
 }
 export const totals = (exam: Exam) => exam.attempts.map(s => sum(s.scores.map(x => x ?? 0)))

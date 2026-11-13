@@ -197,7 +197,7 @@ function parseD2lAttempts(rows: string[][], opts: ParseOptions): Omit<Parsed, 'f
   if (c.score < 0) issues.push({ line: 1, severity: 'error', message: 'No "Score" column. Export with question scores included.' })
   const idIdx = c.org >= 0 ? c.org : c.user
   const qKeys: string[] = []
-  const qInfo = new Map<string, { label: string; stem?: string; max: number }>()
+  const qInfo = new Map<string, { label: string; stem?: string; max: number; bonus: boolean }>()
   const studs = new Map<string, { who: ReturnType<typeof identity>; att: string; score: Map<string, number>; choice: Map<string, string> }>()
   let multi = false
   rows.slice(1).forEach((r, bi) => {
@@ -209,7 +209,7 @@ function parseD2lAttempts(rows: string[][], opts: ParseOptions): Omit<Parsed, 'f
     if (!qInfo.has(qk)) {
       qKeys.push(qk)
       const stem = (c.qtext >= 0 ? r[c.qtext] : c.qtitle >= 0 ? r[c.qtitle] : '')?.trim()
-      qInfo.set(qk, { label: c.qn >= 0 && r[c.qn]?.trim() ? `Q${r[c.qn].trim()}` : `Q${qKeys.length}`, stem: stem || undefined, max: num(r[c.out]) || 1 })
+      qInfo.set(qk, { label: c.qn >= 0 && r[c.qn]?.trim() ? `Q${r[c.qn].trim()}` : `Q${qKeys.length}`, stem: stem || undefined, max: num(r[c.out]) || 1, bonus: c.bonus >= 0 && /^(true|yes|1)$/i.test((r[c.bonus] ?? '').trim()) })
     }
     let s = studs.get(who.id)
     if (s && s.att !== att) {
@@ -237,7 +237,7 @@ function parseD2lAttempts(rows: string[][], opts: ParseOptions): Omit<Parsed, 'f
   const items: Item[] = qKeys.map((k, j) => {
     const q = qInfo.get(k)!
     const L = lt[j]
-    return { id: `q${j + 1}`, label: q.label, stem: q.stem, maxPoints: q.max, bankKey: q.stem ? stemKey(q.stem) : q.label, ...(L ? { options: L.options, key: L.key } : {}) }
+    return { id: `q${j + 1}`, label: q.label, stem: q.stem, maxPoints: q.max, ...(q.bonus ? { bonus: true } : {}), bankKey: q.stem ? stemKey(q.stem) : q.label, ...(L ? { options: L.options, key: L.key } : {}) }
   })
   const attempts: Attempt[] = list.map((s, i) => ({ ...s.who, scores: sc[i], ...(lt.some(Boolean) ? { choices: ans[i].map((a, j) => (a && lt[j] ? lt[j]!.letterOf.get(a) ?? null : null)) } : {}) }))
   const optText = lt.map(L => L?.text)

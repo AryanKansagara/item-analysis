@@ -127,7 +127,7 @@ export default function Docs() {
           <h2>Regrades and grade files</h2>
           <p>A regrade is one of: <b>drop</b> (removed from score and maximum), <b>full credit</b> (everyone gets the points), or <b>also accept</b> (students who chose the extra option get full marks). Decisions are saved with the sitting and appear in the report. Nothing changes in your LMS until you import the file.</p>
           <h3>Brightspace</h3>
-          <p>The file has <code>OrgDefinedId</code> and <code>Username</code> (prefixed with <code>#</code>, as Brightspace exports them), one <code>&lt;grade item&gt; Points Grade</code> column and the required <code>End-of-Line Indicator</code> column with <code>#</code> on every row. The grade item name must match your gradebook exactly. Scores are on the scale you enter (“Points out of”).</p>
+          <p>The file has <code>OrgDefinedId</code> and <code>Username</code> (prefixed with <code>#</code>, as Brightspace exports them), one <code>&lt;grade item&gt; Points Grade</code> column and the required <code>End-of-Line Indicator</code> column with <code>#</code> on every row. The grade item name must match your gradebook exactly. Scores are on the scale you enter (“Points out of”). Bonus questions (<code>Bonus? = TRUE</code> in the attempts export) add to a student's score but not to the maximum, so a score can exceed it; turn on <i>Can Exceed</i> for the grade item or Brightspace will reject those rows.</p>
           <Code label="Brightspace Grades import" code={BS_IMPORT} />
           <ol>
             <li><b>Grades</b> → <b>Enter Grades</b> → <b>Import</b>.</li>
