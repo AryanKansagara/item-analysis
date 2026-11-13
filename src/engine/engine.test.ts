@@ -257,3 +257,133 @@ test('item bank: trend links sittings and compare spots the collapsed item', () 
   assert.match(cmp.rows[16].note, /collapsed/)
   assert.equal(cmp.added, 0)
 })
+
+// ---------- Layouts taken from the LMS source code and help pages ----------
+// Canvas: instructure/canvas-lms app/models/quizzes/quiz_statistics/{student,item}_analysis.rb (AGPL; headers only, values made up).
+// Moodle: moodle/moodle mod/quiz/report/overview (headers "Q. n /max", states "Finished", "In progress", "Requires grading").
+
+test('Canvas Student Analysis without SIS ids (no permission) is still detected', () => {
+  const csv = 'name,id,section,section_id,submitted,101: Which organelle makes ATP?,1.0,102: ,1.0,n correct,n incorrect,score\n"Lee, Ann",11,BIO 101 A,7,2026-10-01 14:02:11 UTC,Mitochondrion,1.0,4,1.0,2,0,2.0\n"Roy, Bob",12,BIO 101 A,7,2026-10-01 14:05:40 UTC,Ribosome,0.0,4,1.0,1,1,1.0\n'
+  assert.equal(detect(parseCsv(csv)[0]), 'canvas-student')
+  const p = parse(csv, { salt: 's' })
+  assert.equal(p.exam.items.length, 2)
+  assert.deepEqual(p.exam.attempts.map(a => a.scores), [[1, 1], [0, 1]])
+  assert.equal(p.exam.attempts[0].lmsId, '11')
+})
+
+test('Canvas anonymous survey export (no name or id) keeps every row as a student', () => {
+  const csv = 'section,section_id,submitted,201: Rate the pace,0.0,n correct,n incorrect,score\nA,7,2026-10-01,Too fast,,0,0,0\nA,7,2026-10-01,About right,,0,0,0\nA,7,2026-10-01,About right,,0,0,0\n'
+  const p = parse(csv, { salt: 's' })
+  assert.equal(p.format, 'canvas-student')
+  assert.equal(p.exam.attempts.length, 3)
+  assert.equal(new Set(p.exam.attempts.map(a => a.id)).size, 3)
+  assert.ok(p.issues.some(i => /Anonymous/.test(i.message)))
+})
+
+test('Canvas Item Analysis full header: p, point-biserial and D from top/bottom counts', () => {
+  const h = 'Question Id,Question Title,Answered Student Count,Top Student Count,Middle Student Count,Bottom Student Count,Quiz Question Count,Correct Student Count,Wrong Student Count,Correct Student Ratio,Wrong Student Ratio,Correct Top Student Count,Correct Middle Student Count,Correct Bottom Student Count,Variance,Standard Deviation,Difficulty Index,Alpha,Point Biserial of Correct,Point Biserial of Distractor 2,Point Biserial of Distractor 3'
+  const csv = `${h}\n4411,Which organelle makes ATP?,100,27,46,27,2,80,20,0.8,0.2,26,38,16,0.16,0.4,0.8,N/A,0.42,-0.3,-0.2\n4412,Osmosis moves,100,27,46,27,2,45,55,0.45,0.55,10,22,13,0.2475,0.497,0.45,N/A,-0.08,0.1,\n`
+  const p = parse(csv, { salt: 's' })
+  assert.equal(p.format, 'canvas-item')
+  assert.deepEqual(p.summary!.map(s => [s.p, s.r, s.n]), [[0.8, 0.42, 100], [0.45, -0.08, 100]])
+  near(p.summary![0].d!, 26 / 27 - 16 / 27)
+  near(p.summary![1].d!, 10 / 27 - 13 / 27)
+})
+
+test('Brightspace attempts export, full header: multi-select answers become one combined choice', () => {
+  const h = 'Org Defined ID,Username,FirstName,LastName,Attempt #,Attempt Start,Attempt End,Section #,Q #,Q Type,Q Title,Q Text,Bonus?,Difficulty,Answer,Answer Match,Score,Out Of'
+  const rows: string[] = []
+  const add = (id: string, first: string, picks: string[], score: number) => {
+    for (const opt of ['Kidney', 'Liver', 'Lung']) rows.push([id, id.toLowerCase(), first, 'X', '1', '2026-10-01 9:00 AM', '2026-10-01 9:40 AM', '1', '3', 'M-S', 'Organs', '"Which organs filter blood?"', 'FALSE', '1', opt, picks.includes(opt) ? 'Checked' : 'Unchecked', String(score), '2'].join(','))
+  }
+  add('A1', 'Ann', ['Kidney', 'Liver'], 2)
+  add('B2', 'Bob', ['Kidney'], 1)
+  add('C3', 'Cy', ['Kidney', 'Liver'], 2)
+  const p = parse([h, ...rows].join('\n'), { salt: 's' })
+  assert.equal(p.format, 'd2l-attempts')
+  assert.equal(p.exam.items.length, 1)
+  assert.equal(p.exam.items[0].maxPoints, 2)
+  assert.deepEqual(p.exam.attempts.map(a => a.scores[0]), [2, 1, 2])
+  const [ann, bob] = p.exam.attempts.map(a => a.choices![0])
+  assert.notEqual(ann, bob)
+  assert.deepEqual(p.exam.items[0].key, [ann])
+})
+
+test('Moodle: unfinished and repeat attempts are left out, "Requires grading" is unscored', () => {
+  const csv = [
+    'Last name,First name,Email address,State,Started on,Completed,Time taken,Grade/3.00,Q. 1 /1.00,Q. 2 /1.00,Q. 3 /1.00',
+    'Lee,Ann,ann@example.edu,Finished,1 October 2026  9:00 AM,1 October 2026  9:20 AM,20 mins,"2,00","1,00","1,00",Requires grading',
+    'Lee,Ann,ann@example.edu,Finished,2 October 2026  9:00 AM,2 October 2026  9:20 AM,20 mins,"3,00","1,00","1,00","1,00"',
+    'Roy,Bob,bob@example.edu,In progress,1 October 2026  9:00 AM,-,-,-,"1,00",-,-',
+    'Kim,Cy,cy@example.edu,Finished,1 October 2026  9:00 AM,1 October 2026  9:30 AM,30 mins,"1,00","0,00","1,00","0,00"',
+    'Overall average,,,,,,,"2,00","0,50","1,00","0,00"',
+  ].join('\n')
+  const p = parse(csv, { salt: 's' })
+  assert.equal(p.format, 'moodle')
+  assert.deepEqual(p.exam.attempts.map(a => a.scores), [[1, 1, null], [0, 1, 0]])
+  assert.ok(p.issues.some(i => /Requires grading/.test(i.message)))
+  assert.ok(p.issues.some(i => /not finished/.test(i.message)))
+  assert.ok(p.issues.some(i => /later attempt/.test(i.message)))
+})
+
+// ---------- Random question pools and ungraded answers ----------
+
+const pooled = (): Exam => ({
+  items: [1, 2, 3].map(j => ({ id: `q${j}`, label: `Q${j}`, maxPoints: 1, bankKey: `p${j}` })),
+  attempts: [
+    { id: 'a', scores: [1, null, 1] },
+    { id: 'b', scores: [0, 1, null] },
+    { id: 'c', scores: [null, 1, 1] },
+    { id: 'd', scores: [1, 0, null] },
+  ],
+})
+
+test('pooled questions: difficulty uses only students who were given the item', () => {
+  const a = analyze(pooled())
+  assert.deepEqual(a.items.map(i => i.p), [2 / 3, 2 / 3, 1])
+  assert.deepEqual(a.items.map(i => i.n), [3, 3, 2])
+})
+
+test('pooled questions: percent is out of the points each student was given', () => {
+  const ex = pooled()
+  assert.equal(analyze(ex).test.maxTotal, 2)
+  assert.deepEqual(scaledPct(ex), [100, 50, 100, 50])
+})
+const scaledPct = (ex: Exam) => impact(ex, ex, DEFAULT_BANDS).students.map(s => s.before)
+
+test('pooled questions: reliability is withheld without enough complete records', () => {
+  const t = analyze(pooled()).test
+  assert.equal(t.alpha, null)
+  assert.equal(t.complete, 0)
+})
+
+test('full credit does not award points for a pooled question the student never saw', () => {
+  const re = rescore(pooled(), [{ itemId: 'q2', kind: 'full' }])
+  assert.deepEqual(re.attempts.map(a => a.scores[1]), [null, 1, 1, 1])
+})
+
+test('alpha with an ungraded answer is computed on complete records only', () => {
+  const ex = SAMPLES[0].exams()[0].exam
+  const full = analyze(ex).test.alpha!
+  ex.attempts[0].scores[3] = null
+  const t = analyze(ex).test
+  assert.equal(t.complete, ex.attempts.length - 1)
+  const rest = { ...ex, attempts: ex.attempts.slice(1) }
+  near(t.alpha, analyze(rest).test.alpha!)
+  assert.ok(Math.abs(t.alpha! - full) < 0.02)
+})
+
+test('point-biserial matches the textbook formula (M1 - M0) / s * sqrt(pq)', () => {
+  const ex = SAMPLES[0].exams()[0].exam
+  const a = analyze(ex)
+  const tot = totals(ex), j = 4
+  const right = tot.filter((_, i) => ex.attempts[i].scores[j] === 1), wrong = tot.filter((_, i) => ex.attempts[i].scores[j] === 0)
+  const m = (x: number[]) => x.reduce((s, v) => s + v, 0) / x.length
+  const mu = m(tot), s = Math.sqrt(m(tot.map(x => (x - mu) ** 2))), p = right.length / tot.length
+  near(a.items[j].pbis, ((m(right) - m(wrong)) / s) * Math.sqrt(p * (1 - p)))
+})
+
+test('generic CSV: a blank score is 0, as the import report says', () => {
+  const p = parse('Student,Q1,Q2\ns1,1,\ns2,0,1\n', { salt: 's' })
+  assert.deepEqual(p.exam.attempts.map(a => a.scores), [[1, 0], [0, 1]])
+})

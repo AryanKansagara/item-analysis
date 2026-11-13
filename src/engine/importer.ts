@@ -54,7 +54,7 @@ export const FORMAT_LABEL: Record<Format, string> = {
 }
 
 export interface Issue { line: number; severity: 'error' | 'warning' | 'info'; message: string }
-export interface ItemSummary { label: string; stem?: string; p: number; r: number | null; n: number }
+export interface ItemSummary { label: string; stem?: string; p: number; r: number | null; n: number; d?: number | null }
 export interface Parsed {
   format: Format
   exam: Exam
@@ -76,11 +76,13 @@ export function detect(h: string[]): Format {
   if (n.includes('questionid') && n.some(x => x.startsWith('pointbiserial') || x === 'difficultyindex')) return 'canvas-item'
   if ((n.includes('q#') || n.includes('qtext') || n.includes('qtitle')) && (n.includes('answermatch') || n.includes('outof') || n.includes('score'))) return 'd2l-attempts'
   if (h.some(x => /Points Grade/i.test(x)) || n.includes('endoflineindicator')) return 'd2l-grades'
-  if (h.some(x => /^\d+:\s/.test(x)) && n.includes('sisid')) return 'canvas-student'
+  // sis_id only appears for users allowed to see SIS data, and anonymous surveys drop name and id.
+  if (h.some(x => CANVAS_Q.test(x)) && n.includes('section') && n.includes('ncorrect')) return 'canvas-student'
   if ((n.includes('surname') || n.includes('firstname')) && h.some(x => /^(Response|Q\.)\s*\d+/i.test(x))) return 'moodle'
   return 'generic'
 }
 
+const CANVAS_Q = /^\d+:(\s|$)/
 const letters = (i: number) => String.fromCharCode(65 + i)
 
 export function parse(text: string, opts: ParseOptions): Parsed {
@@ -170,7 +172,7 @@ function parseWide(rows: string[][], opts: ParseOptions, format: 'd2l-grades' | 
         return c && items[j].key?.includes(c) ? 1 : 0
       }
       const x = num(v)
-      if (v === '') return null
+      if (v === '') return 0
       if (isNaN(x)) { issues.push({ line, severity: 'warning', message: `${items[j].label}: "${v}" is not a number; counted as 0.` }); return 0 }
       if (x > items[j].maxPoints + 1e-9) issues.push({ line, severity: 'warning', message: `${items[j].label}: ${x} is above the ${items[j].maxPoints} maximum.` })
       if (x < 0) issues.push({ line, severity: 'warning', message: `${items[j].label}: negative score ${x}.` })
@@ -220,7 +222,11 @@ function parseD2lAttempts(rows: string[][], opts: ParseOptions): Omit<Parsed, 'f
     const sc = num(r[c.score])
     if (!isNaN(sc)) s.score.set(qk, sc)
     const m = c.match >= 0 ? (r[c.match] ?? '').trim().toLowerCase() : ''
-    if (c.answer >= 0 && (m === 'checked' || m === 'selected' || m === 'true')) s.choice.set(qk, (r[c.answer] ?? '').trim())
+    if (c.answer >= 0 && (m === 'checked' || m === 'selected' || m === 'true')) {
+      // Multi-select questions have several checked rows; the choice is the combination.
+      const prev = s.choice.get(qk), a = (r[c.answer] ?? '').trim()
+      s.choice.set(qk, prev ? `${prev}; ${a}` : a)
+    }
   })
   if (multi) issues.push({ line: 0, severity: 'info', message: 'Some students have more than one attempt. Only each student\'s first attempt is analysed.' })
   const list = [...studs.values()]
@@ -244,11 +250,12 @@ function parseCanvasStudent(rows: string[][], opts: ParseOptions): Omit<Parsed, 
   const issues: Issue[] = []
   const nameIdx = findCol(h, 'name'), idIdx = findCol(h, 'sis_id') >= 0 && rows.slice(1).some(r => r[findCol(h, 'sis_id')]?.trim()) ? findCol(h, 'sis_id') : findCol(h, 'id')
   const attemptIdx = findCol(h, 'attempt')
-  const qs = h.map((x, i) => ({ x, i })).filter(({ x }) => /^\d+:\s/.test(x))
+  const qs = h.map((x, i) => ({ x, i })).filter(({ x }) => CANVAS_Q.test(x))
   const body: string[][] = []
   const seen = new Map<string, number>()
-  rows.slice(1).forEach(r => {
-    const id = (r[idIdx] ?? '').trim()
+  rows.slice(1).forEach((r, ri) => {
+    // Anonymous quizzes have no name or id: every row is its own student.
+    const id = idIdx >= 0 ? (r[idIdx] ?? '').trim() : `row${ri}`
     const prev = seen.get(id)
     // Canvas lists one row per attempt; keep the first.
     if (prev !== undefined) { if (attemptIdx >= 0 && Number(r[attemptIdx]) < Number(body[prev][attemptIdx])) body[prev] = r; return }
@@ -263,7 +270,8 @@ function parseCanvasStudent(rows: string[][], opts: ParseOptions): Omit<Parsed, 
     const L = lt[j]
     return { id: `q${j + 1}`, label: `Q${j + 1}`, stem: L ? stem + optionsSuffix(L.text) : stem, maxPoints: maxes[j], bankKey: stemKey(stem), ...(L ? { options: L.options, key: L.key } : {}) }
   })
-  const attempts = body.map((r, i) => ({ ...identity(h, r, opts, idIdx, -1, [nameIdx]), scores: sc[i], choices: ans[i].map((a, j) => (a && lt[j] ? lt[j]!.letterOf.get(a) ?? null : null)) }))
+  if (idIdx < 0) issues.push({ line: 1, severity: 'info', message: 'Anonymous export: no name or id columns, so students get row-based pseudonyms and no grade import can be built.' })
+  const attempts = body.map((r, i) => ({ ...(idIdx >= 0 ? identity(h, r, opts, idIdx, -1, [nameIdx]) : { id: pseudonym(`anon-${i}`, opts.salt) }), scores: sc[i], choices: ans[i].map((a, j) => (a && lt[j] ? lt[j]!.letterOf.get(a) ?? null : null)) }))
   if (!qs.length) issues.push({ line: 1, severity: 'error', message: 'No question columns ("<id>: <question text>") found.' })
   return { exam: { items, attempts }, issues, columns: h.map((name, i) => ({ name, role: i === idIdx ? 'id' : i === nameIdx ? 'name' : qs.some(q => q.i === i || q.i + 1 === i) ? 'item' : 'meta' })) }
 }
@@ -281,7 +289,20 @@ function parseMoodle(rows: string[][], opts: ParseOptions): Omit<Parsed, 'format
   })
   const qn = [...new Set([...resp.keys(), ...grade.keys()])].sort((a, b) => a - b)
   // Moodle appends an "Overall average" row to the grades report.
-  const body = rows.slice(1).filter(r => !/overall average/i.test(r.join(' ')))
+  const state = findCol(h, 'State')
+  let skipped = 0, repeats = 0
+  const firstOf = new Set<string>()
+  const body = rows.slice(1).filter(r => {
+    if (/overall average/i.test(r.join(' '))) return false
+    // Only submitted attempts count: In progress, Overdue and Never submitted rows are left out.
+    if (state >= 0 && r[state]?.trim() && !/^finished$/i.test(r[state].trim())) { skipped++; return false }
+    const who = [idIdx, first, last].map(i => (i >= 0 ? r[i] ?? '' : '')).join('|').trim().toLowerCase()
+    if (firstOf.has(who)) { repeats++; return false }
+    firstOf.add(who)
+    return true
+  })
+  if (skipped) issues.push({ line: 0, severity: 'info', message: `${skipped} attempt${skipped > 1 ? 's' : ''} not finished (in progress, overdue or never submitted) left out.` })
+  if (repeats) issues.push({ line: 0, severity: 'info', message: `${repeats} later attempt${repeats > 1 ? 's' : ''} left out; each student's first finished attempt is analysed.` })
   const sc = body.map(r => qn.map(q => { const g = grade.get(q); if (!g) return null; const x = num(r[g.i]); return isNaN(x) ? null : x }))
   const ans = body.map(r => qn.map(q => (resp.has(q) ? (r[resp.get(q)!] ?? '').trim() : '') || null).map(a => (a === '-' ? null : a)))
   // Without grade columns, score a response as right when it matches "Right answer".
@@ -291,6 +312,8 @@ function parseMoodle(rows: string[][], opts: ParseOptions): Omit<Parsed, 'format
     body.forEach((r, i) => { sc[i][j] = ans[i][j] !== null && ans[i][j] === (r[right.get(q)!] ?? '').trim() ? 1 : 0 })
   })
   const maxes = qn.map(q => grade.get(q)?.max ?? 1)
+  const ungraded = body.reduce((n, r) => n + [...grade.values()].filter(g => /requires grading|not yet graded/i.test(r[g.i] ?? '')).length, 0)
+  if (ungraded) issues.push({ line: 0, severity: 'warning', message: `${ungraded} answer${ungraded > 1 ? 's' : ''} still "Requires grading". They are left out of those students' scores and maximums; grade them in Moodle and export again for final numbers.` })
   const lt = lettered(ans, sc, maxes)
   const items: Item[] = qn.map((q, j) => ({ id: `q${j + 1}`, label: `Q${q}`, stem: lt[j] ? `Question ${q}` + optionsSuffix(lt[j]!.text) : undefined, maxPoints: maxes[j], bankKey: `Q${q}`, ...(lt[j] ? { options: lt[j]!.options, key: lt[j]!.key } : {}) }))
   const attempts = body.map((r, i) => ({ ...identity(h, r, opts, idIdx, -1, [first, last].filter(x => x >= 0)), lmsId: (r[idIdx] ?? '').trim() || undefined, scores: sc[i], choices: ans[i].map((a, j) => (a && lt[j] ? lt[j]!.letterOf.get(a) ?? null : null)) }))
@@ -301,7 +324,10 @@ function parseCanvasItem(rows: string[][]): Omit<Parsed, 'format'> {
   const h = rows[0].map(x => x.trim())
   const t = findCol(h, 'Question Title'), p = findCol(h, 'Correct Student Ratio', 'Difficulty Index'), r = findCol(h, 'Point Biserial of Correct'), n = findCol(h, 'Answered Student Count')
   const issues: Issue[] = [{ line: 0, severity: 'info', message: 'Item Analysis has per-question numbers only. It feeds the item bank trend; regrades and distractor charts need the Student Analysis report.' }]
-  const summary = rows.slice(1).map((row, i) => ({ label: `Q${i + 1}`, stem: t >= 0 ? row[t]?.trim() : undefined, p: num(row[p]), r: r >= 0 && !isNaN(num(row[r])) ? num(row[r]) : null, n: n >= 0 ? num(row[n]) || 0 : 0 }))
+  // Canvas splits students into top, middle and bottom 27% groups, so D = top share correct - bottom share correct.
+  const [top, bot, ctop, cbot] = ['Top Student Count', 'Bottom Student Count', 'Correct Top Student Count', 'Correct Bottom Student Count'].map(x => findCol(h, x))
+  const dOf = (row: string[]) => { const [a, b, c, e] = [top, bot, ctop, cbot].map(i => (i >= 0 ? num(row[i]) : NaN)); return a > 0 && b > 0 && !isNaN(c) && !isNaN(e) ? c / a - e / b : null }
+  const summary = rows.slice(1).map((row, i) => ({ label: `Q${i + 1}`, stem: t >= 0 ? row[t]?.trim() : undefined, p: num(row[p]), r: r >= 0 && !isNaN(num(row[r])) ? num(row[r]) : null, n: n >= 0 ? num(row[n]) || 0 : 0, d: dOf(row) }))
   summary.forEach((s, i) => { if (isNaN(s.p)) issues.push({ line: i + 2, severity: 'warning', message: `No difficulty value for ${s.label}.` }) })
   return { exam: { items: [], attempts: [] }, issues, columns: h.map(name => ({ name, role: 'meta' as const })), summary: summary.map(s => ({ ...s, p: isNaN(s.p) ? 0 : s.p })) }
 }

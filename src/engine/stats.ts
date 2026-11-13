@@ -34,7 +34,8 @@ export function rescore(exam: Exam, adj: Adjustment[]): Exam {
       ...s,
       scores: keep.map(({ it, i }) => {
         const a = by.get(it.id)
-        if (a?.kind === 'full') return it.maxPoints
+        // A pooled question the student never saw stays unscored.
+        if (a?.kind === 'full') return s.scores[i] === null ? null : it.maxPoints
         if (a?.kind === 'accept' && s.choices?.[i] && a.accept?.includes(s.choices[i]!)) return it.maxPoints
         return s.scores[i]
       }),
@@ -43,9 +44,16 @@ export function rescore(exam: Exam, adj: Adjustment[]): Exam {
   }
 }
 
-export const maxTotal = (exam: Exam) => sum(exam.items.map(i => i.maxPoints))
+// A null score means the student was not given the question (random pools) or it is still ungraded.
+// It counts toward neither the student's score nor their maximum.
+export const studentMax = (exam: Exam) => exam.attempts.map(s => sum(exam.items.map((it, j) => (s.scores[j] === null || s.scores[j] === undefined ? 0 : it.maxPoints))))
+/** Points on the paper: all items, or the largest set any one student was given when questions come from pools. */
+export const maxTotal = (exam: Exam) => {
+  const all = sum(exam.items.map(i => i.maxPoints))
+  return exam.attempts.length ? Math.min(all, Math.max(...studentMax(exam))) : all
+}
 export const totals = (exam: Exam) => exam.attempts.map(s => sum(s.scores.map(x => x ?? 0)))
-export const percents = (exam: Exam) => { const m = maxTotal(exam) || 1; return totals(exam).map(t => (t / m) * 100) }
+export const percents = (exam: Exam) => { const m = studentMax(exam); return totals(exam).map((t, i) => (t / (m[i] || 1)) * 100) }
 
 export function band(pct: number, bands: Band[]) {
   const sorted = [...bands].sort((a, b) => b.min - a.min)
@@ -114,6 +122,8 @@ export interface TestStat {
   sem: number | null
   /** Histogram of percent scores in 10-point bins, 0-9 ... 90-100. */
   histogram: number[]
+  /** Students scored on every item; reliability is computed on these. Equals n unless pools or ungraded answers. */
+  complete: number
 }
 
 export interface Analysis { test: TestStat; items: ItemStat[] }
@@ -129,13 +139,20 @@ export function analyze(exam: Exam, th: Thresholds = DEFAULT_THRESHOLDS): Analys
   const N = exam.attempts.length
   const k = exam.items.length
   const cols = exam.items.map((_, j) => exam.attempts.map(s => s.scores[j] ?? 0))
+  // Who was scored on each item. With random pools or ungraded answers, item statistics use only these students.
+  const seen = exam.items.map((_, j) => exam.attempts.map((s, i) => (s.scores[j] === null || s.scores[j] === undefined ? -1 : i)).filter(i => i >= 0))
   const tot = totals(exam)
   const mt = maxTotal(exam)
   const sortedTot = [...tot].sort((a, b) => a - b)
   const dich = exam.items.every((it, j) => it.maxPoints === 1 && cols[j].every(x => x === 0 || x === 1))
-  const alpha = alphaOf(cols, tot)
-  const vt = variance(tot), m = mean(tot)
-  const kr21 = dich && k > 1 && vt > 0 ? (k / (k - 1)) * (1 - (m * (k - m)) / (k * vt)) : null
+  // Reliability needs a complete matrix, so students with any unscored item are left out (listwise deletion).
+  const complete = exam.attempts.map((_, i) => i).filter(i => seen.every(sn => sn.includes(i)))
+  const full = complete.length === N
+  const ccols = full ? cols : cols.map(c => complete.map(i => c[i]))
+  const ctot = full ? tot : complete.map(i => tot[i])
+  const alpha = complete.length >= 10 || full ? alphaOf(ccols, ctot) : null
+  const vt = variance(ctot), m = mean(tot), cm = mean(ctot)
+  const kr21 = dich && full && k > 1 && vt > 0 ? (k / (k - 1)) * (1 - (cm * (k - cm)) / (k * vt)) : null
 
   // Upper and lower 27% by total score; ties broken by order, which is the usual convention.
   const order = tot.map((t, i) => ({ t, i })).sort((a, b) => b.t - a.t || a.i - b.i).map(x => x.i)
@@ -148,26 +165,26 @@ export function analyze(exam: Exam, th: Thresholds = DEFAULT_THRESHOLDS): Analys
   const items: ItemStat[] = exam.items.map((it, j) => {
     const col = cols[j]
     const mp = it.maxPoints || 1
-    const p = N ? mean(col) / mp : 0
-    const pg = (idx: number[]) => idx.length ? mean(idx.map(i => col[i])) / mp : 0
+    const sn = seen[j], isSeen = new Set(sn)
+    const p = sn.length ? mean(sn.map(i => col[i])) / mp : 0
+    const pg = (idx: number[]) => { const x = idx.filter(i => isSeen.has(i)); return x.length ? mean(x.map(i => col[i])) / mp : 0 }
     const d = pg(upper) - pg(lower)
     const rest = tot.map((t, i) => t - col[i])
-    const pbis = pearson(col, tot)
-    const rCorrected = pearson(col, rest)
-    const others = cols.filter((_, x) => x !== j)
-    const alphaIfDeleted = alphaOf(others, rest)
+    const pbis = pearson(sn.map(i => col[i]), sn.map(i => tot[i]))
+    const rCorrected = pearson(sn.map(i => col[i]), sn.map(i => rest[i]))
+    const alphaIfDeleted = alpha === null ? null : alphaOf(ccols.filter((_, x) => x !== j), full ? rest : complete.map(i => rest[i]))
 
     let options: OptionStat[] = []
     if (it.options?.length && exam.attempts.some(s => s.choices)) {
       const ch = exam.attempts.map(s => s.choices?.[j] ?? null)
-      const share = (idx: number[], o: string) => idx.length ? idx.filter(i => ch[i] === o).length / idx.length : 0
+      const share = (idx: number[], o: string) => { const x = idx.filter(i => isSeen.has(i)); return x.length ? x.filter(i => ch[i] === o).length / x.length : 0 }
       options = it.options.map(o => ({
         option: o,
         isKey: !!it.key?.includes(o),
         all: share(order, o),
         upper: share(upper, o),
         lower: share(lower, o),
-        r: pearson(ch.map(c => (c === o ? 1 : 0)), rest),
+        r: pearson(sn.map(i => (ch[i] === o ? 1 : 0)), sn.map(i => rest[i])),
         byGroup: groups.map(gr => share(gr, o)),
       }))
     }
@@ -188,10 +205,10 @@ export function analyze(exam: Exam, th: Thresholds = DEFAULT_THRESHOLDS): Analys
     if (p < th.hard) flags.push('hard')
     if (distractors.some(o => o.all < th.nfd)) flags.push('nfd')
 
-    return { id: it.id, label: it.label, index: j, maxPoints: it.maxPoints, dichotomous: it.maxPoints === 1 && col.every(x => x === 0 || x === 1), n: N, p, d, pbis, rCorrected, alphaIfDeleted, options, flags, suspect }
+    return { id: it.id, label: it.label, index: j, maxPoints: it.maxPoints, dichotomous: it.maxPoints === 1 && col.every(x => x === 0 || x === 1), n: sn.length, p, d, pbis, rCorrected, alphaIfDeleted, options, flags, suspect }
   })
 
-  const pct = tot.map(t => (mt ? (t / mt) * 100 : 0))
+  const pct = percents(exam)
   const histogram = new Array(10).fill(0)
   for (const x of pct) histogram[Math.min(9, Math.floor(x / 10))]++
 
@@ -199,7 +216,7 @@ export function analyze(exam: Exam, th: Thresholds = DEFAULT_THRESHOLDS): Analys
     test: {
       n: N, k, maxTotal: mt, mean: m, sd: sd(tot), median: quantile(sortedTot, 0.5), q1: quantile(sortedTot, 0.25), q3: quantile(sortedTot, 0.75),
       min: sortedTot[0] ?? 0, max: sortedTot[N - 1] ?? 0, meanPct: mt ? (m / mt) * 100 : 0,
-      kr20: dich ? alpha : null, kr21, alpha, sem: alpha === null ? null : sd(tot) * Math.sqrt(Math.max(0, 1 - alpha)), histogram,
+      kr20: dich ? alpha : null, kr21, alpha, sem: alpha === null ? null : sd(tot) * Math.sqrt(Math.max(0, 1 - alpha)), histogram, complete: complete.length,
     },
     items,
   }

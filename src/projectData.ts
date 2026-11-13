@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { snapshotOf, type ExamSnapshot } from './engine/actions.ts'
-import type { ItemSummary, Parsed } from './engine/importer.ts'
+import { stemKey, type ItemSummary, type Parsed } from './engine/importer.ts'
 import { SAMPLES } from './engine/sample.ts'
 import { analyze, impact, rescore } from './engine/stats.ts'
 import type { Adjustment, Attempt, Exam } from './engine/types.ts'
@@ -48,7 +48,7 @@ function summarySnapshot(rows: ItemSummary[], meta: Pick<ExamSnapshot, 'id' | 't
   const n = Math.max(0, ...rows.map(r => r.n))
   return {
     ...meta, createdAt: Date.now(), n, k: rows.length, alpha: null, kr20: null, sem: null, meanPct: rows.length ? (rows.reduce((s, r) => s + r.p, 0) / rows.length) * 100 : 0, medianPct: 0, adjustments: [], summaryOnly: true,
-    items: rows.map(r => ({ bankKey: r.stem ? 'k' + r.stem.toLowerCase().replace(/[^a-z0-9]+/g, '') : r.label, label: r.label, stem: r.stem, p: r.p, d: null, r: r.r, flags: [] })).map(i => ({ ...i, maxPoints: 1 })),
+    items: rows.map(r => ({ bankKey: r.stem ? stemKey(r.stem) : r.label, label: r.label, stem: r.stem, p: r.p, d: r.d ?? null, r: r.r, flags: [] })).map(i => ({ ...i, maxPoints: 1 })),
   }
 }
 

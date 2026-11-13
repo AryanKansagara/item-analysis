@@ -129,7 +129,7 @@ function Overview({ a, before, meta, onOpen, sel, regradeHref, changed }: { a: A
     <>
       <div className="kpis">
         <div className="kpi"><span>Students</span><b>{t.n}</b><small>{t.k} items, {+t.maxTotal.toFixed(2)} points</small></div>
-        <div className="kpi"><span>{t.kr20 !== null ? 'KR-20' : 'Alpha'}</span><b>{f2(rel)}</b><small>{rel === null ? 'Not enough spread' : rel >= 0.8 ? 'Good for a classroom test' : rel >= 0.7 ? 'Acceptable' : 'Low: scores are noisy'}</small></div>
+        <div className="kpi"><span>{t.kr20 !== null ? 'KR-20' : 'Alpha'}</span><b>{f2(rel)}</b><small>{t.complete < t.n ? (rel === null ? 'Needs students who saw every item (question pools)' : `On the ${t.complete} students scored on every item; `) : ''}{rel === null ? (t.complete < t.n ? '' : 'Not enough spread') : rel >= 0.8 ? 'Good for a classroom test' : rel >= 0.7 ? 'Acceptable' : 'Low: scores are noisy'}</small></div>
         <div className="kpi"><span>SEM</span><b>{t.sem === null ? '—' : t.sem.toFixed(1)}</b><small>points, ±{t.sem === null ? '—' : ((t.sem / (t.maxTotal || 1)) * 100).toFixed(1)}% of the scale</small></div>
         <div className="kpi"><span>Median</span><b>{((t.median / (t.maxTotal || 1)) * 100).toFixed(0)}%</b><small>Mean {t.meanPct.toFixed(1)}%, IQR {((t.q1 / t.maxTotal) * 100).toFixed(0)}–{((t.q3 / t.maxTotal) * 100).toFixed(0)}%</small></div>
         <div className={`kpi${review.some(i => severity(i) === 2) ? ' alert' : ''}`}><span>Flagged items</span><b>{review.length}</b><small>{review.filter(i => severity(i) === 2).length} serious{meta.adjustments.length ? ` · ${meta.adjustments.length} regrade${meta.adjustments.length > 1 ? 's' : ''} applied` : ''}</small></div>

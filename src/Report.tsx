@@ -78,7 +78,7 @@ export default function Report({ id }: { id: string }) {
         </section>
         <section>
           <h2>Method</h2>
-          <p className="small muted">Difficulty p is the mean score as a share of the item's points. D is the difference in p between the top and bottom 27% of students by total score. r pbis is the Pearson correlation of item score with total score; r corrected removes the item from the total. KR-20 (dichotomous items only), KR-21 and Cronbach's alpha use population variances; SEM = SD × √(1 − reliability). Distractors chosen by under 5% of students are non-functioning. A likely miskey is a distractor chosen more often than the key by the top group and correlating positively with the rest of the test. Blank responses count as zero. First attempts only.</p>
+          <p className="small muted">Difficulty p is the mean score as a share of the item's points. D is the difference in p between the top and bottom 27% of students by total score. r pbis is the Pearson correlation of item score with total score; r corrected removes the item from the total. KR-20 (dichotomous items only), KR-21 and Cronbach's alpha use population variances; SEM = SD × √(1 − reliability). Distractors chosen by under 5% of students are non-functioning. A likely miskey is a distractor chosen more often than the key by the top group and correlating positively with the rest of the test. Blank responses in a score sheet count as zero. A question a student was not given (random pools) or that is still ungraded is left out of that student's score and maximum and of that item's statistics; reliability then uses only students scored on every item. First attempts only.</p>
         </section>
       </article>
     </div>

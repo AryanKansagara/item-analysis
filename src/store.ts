@@ -1,6 +1,6 @@
 import { useSyncExternalStore } from 'react'
 import type { ExamSnapshot } from './engine/actions.ts'
-import type { Format } from './engine/importer.ts'
+import { stemKey, type Format } from './engine/importer.ts'
 import { DEFAULT_BANDS, DEFAULT_THRESHOLDS, type Adjustment, type Attempt, type Band, type Item, type Thresholds } from './engine/types.ts'
 
 /** One exam sitting. Items, keys, regrades and statistics; student rows live in IndexedDB under the exam id. */
@@ -87,8 +87,13 @@ const changeHooks = new Set<(p: Project) => void>()
 
 export const onProjectChange = (f: (p: Project) => void) => { changeHooks.add(f); return () => changeHooks.delete(f) }
 
+/** Version 1 keyed Canvas Item Analysis questions differently from student-level imports; rekey so the bank links them. */
+const migrate = (p: Project): Project => p.exams.some(e => e.summaryOnly)
+  ? { ...p, exams: p.exams.map(e => (e.summaryOnly ? { ...e, snapshot: { ...e.snapshot, items: e.snapshot.items.map(i => (i.stem ? { ...i, bankKey: stemKey(i.stem) } : i)) } } : e)) }
+  : p
+
 export async function loadProjects() {
-  projects = (await idbGetAll<Project>('projects')).sort((a, b) => b.updatedAt - a.updatedAt)
+  projects = (await idbGetAll<Project>('projects')).map(migrate).sort((a, b) => b.updatedAt - a.updatedAt)
   loaded = true
   emit()
 }

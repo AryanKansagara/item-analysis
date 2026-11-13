@@ -43,13 +43,14 @@ export default function Docs() {
 
         <section id="brightspace">
           <h2>Brightspace (D2L)</h2>
-          <h3>Quiz question details (recommended)</h3>
+          <h3>Quiz attempts export (recommended)</h3>
           <ol>
             <li>Open the course, then <b>Quizzes</b>.</li>
-            <li>Open the quiz's menu and choose <b>Statistics</b>.</li>
-            <li>Go to the <b>Question Details</b> tab and choose <b>Export to CSV</b>.</li>
+            <li>Open the quiz's menu and choose <b>Grade</b>, then the <b>Users</b> tab.</li>
+            <li>Choose <b>Export to CSV</b> (on newer releases, <b>Export All Attempts (CSV)</b>).</li>
           </ol>
-          <p>The file has one row per student, attempt, question and answer option. The importer reads <code>Org Defined ID</code> or <code>Username</code>, <code>FirstName</code>/<code>LastName</code>, <code>Attempt #</code>, <code>Q #</code>, <code>Q Text</code> (or <code>Q Title</code>), <code>Answer</code>, <code>Answer Match</code> (the checked option), <code>Score</code> and <code>Out Of</code>. Only each student's first attempt is analysed. The answer key is inferred from which option earned full marks; check it in the Items tab.</p>
+          <p>The Statistics → Question Details export has class totals only, not students; use the Users export above.</p>
+          <p>The file has one row per student, attempt, question and answer option, with columns <code>Org Defined ID, Username, FirstName, LastName, Attempt #, Attempt Start, Attempt End, Section #, Q #, Q Type, Q Title, Q Text, Bonus?, Difficulty, Answer, Answer Match, Score, Out Of</code>. The importer reads the identity columns, <code>Attempt #</code>, <code>Q #</code>, <code>Q Text</code> (or <code>Q Title</code>), <code>Answer</code>, <code>Answer Match</code> (the checked option), <code>Score</code> and <code>Out Of</code>. Multi-select (M-S) questions become one choice per combination of checked options. Only each student's first attempt is analysed. Questions drawn from a random section are scored only for students who received them. The answer key is inferred from which option earned full marks; check it in the Items tab.</p>
           <h3>Grades export</h3>
           <ol>
             <li><b>Grades</b> → <b>Enter Grades</b> → <b>Export</b>.</li>
@@ -67,8 +68,8 @@ export default function Docs() {
             <li>Generate <b>Student Analysis</b> and download the CSV. This has each student's answer text and score per question.</li>
             <li>Optionally generate <b>Item Analysis</b> for a per-question summary of past terms.</li>
           </ol>
-          <p>Student Analysis columns read: <code>name</code>, <code>id</code>, <code>sis_id</code>, then for every question a <code>&lt;question id&gt;: &lt;question text&gt;</code> column followed by its score column whose header is the points possible. Answer texts are mapped to letters A, B, C in alphabetical order; the key is inferred from full-score answers.</p>
-          <p>Item Analysis columns read: <code>Question Title</code>, <code>Correct Student Ratio</code> or <code>Difficulty Index</code>, <code>Point Biserial of Correct</code>, <code>Answered Student Count</code>.</p>
+          <p>Student Analysis columns read: <code>name</code>, <code>id</code>, <code>sis_id</code> (only present if your role can see SIS data; otherwise the Canvas user id is used), then for every question a <code>&lt;question id&gt;: &lt;question text&gt;</code> column followed by its score column whose header is the points possible. Answer texts are mapped to letters A, B, C in alphabetical order; the key is inferred from full-score answers. Multiple-answer questions are one choice per combination. Questions from a question group that a student did not draw are blank and left out of that student's score. Anonymous surveys have no name or id columns; each row becomes its own pseudonymous student and no grade file can be built. Layout checked against the Canvas source (<code>quiz_statistics/student_analysis.rb</code>, November 2026).</p>
+          <p>Item Analysis columns read: <code>Question Title</code>, <code>Correct Student Ratio</code> or <code>Difficulty Index</code> (Canvas computes both as the share correct), <code>Point Biserial of Correct</code>, <code>Answered Student Count</code>, and the top and bottom group counts, from which D = correct top / top − correct bottom / bottom. Questions are matched to Student Analysis imports of other terms by their text, so both kinds of file line up in the item bank.</p>
         </section>
 
         <section id="moodle">
@@ -78,7 +79,7 @@ export default function Docs() {
             <li>Under display options, show <b>Response</b> and <b>Right answer</b>, attempts from enrolled users, first attempt only if you allow several.</li>
             <li>Choose <b>Download table data as</b> CSV.</li>
           </ol>
-          <p>Columns read: <code>Surname</code>, <code>First name</code>, <code>Email address</code> or <code>ID number</code>, <code>Response N</code>, <code>Right answer N</code>, and from the Grades report <code>Q. N /max</code>. If you download the Grades report instead, you get scores without option analysis. The “Overall average” row is skipped.</p>
+          <p>Columns read: <code>Surname</code>, <code>First name</code>, <code>Email address</code> or <code>ID number</code>, <code>Response N</code>, <code>Right answer N</code>, and from the Grades report <code>Q. N /max</code>. If you download the Grades report instead, you get scores without option analysis. The “Overall average” rows are skipped. Only <i>Finished</i> attempts are read (<i>In progress</i>, <i>Overdue</i> and <i>Never submitted</i> are left out) and each student's first finished attempt is kept. A grade of <i>Requires grading</i> (an essay not yet marked) is left out of that student's score and maximum and listed in the report; comma decimals such as <code>0,50</code> are read. The newer <code>Last name</code> header is accepted as well as <code>Surname</code>. Header and state strings checked against Moodle's quiz report source, November 2026.</p>
         </section>
 
         <section id="generic">
