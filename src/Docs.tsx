@@ -134,7 +134,8 @@ export default function Docs() {
             <li>Choose the file, check the preview, and import. Brightspace overwrites the grade item's existing values for the students in the file.</li>
           </ol>
           <h3>Canvas</h3>
-          <p>The file has <code>Student</code>, <code>ID</code>, <code>SIS User ID</code>, <code>SIS Login ID</code>, <code>Section</code> and one assignment column. Rename the assignment column to match your gradebook export exactly, including the id in parentheses, e.g. <code>Midterm 1 (4512)</code>. Import it from <b>Grades</b> → <b>Import</b>.</p>
+          <p>The file has <code>Student</code>, <code>ID</code>, <code>SIS User ID</code>, <code>SIS Login ID</code>, <code>Section</code> and one assignment column. Rename the assignment column to match your gradebook export exactly, including the id in parentheses, e.g. <code>Midterm 1 (4512)</code>. Import it from <b>Grades</b> → <b>Import</b>. Canvas matches rows on <code>ID</code>, the Canvas user id, which the importer keeps from the Student Analysis <code>id</code> column even when <code>sis_id</code> is present. Pseudonymous rows from an anonymous survey have no id and cannot be matched.</p>
+          <p>When questions come from random pools or a question group, a student's percent is out of the points they were actually given, so a student who saw 20 of 40 bank questions is scored out of those 20.</p>
         </section>
 
         <section id="bank">

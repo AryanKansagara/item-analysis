@@ -271,7 +271,9 @@ function parseCanvasStudent(rows: string[][], opts: ParseOptions): Omit<Parsed, 
     return { id: `q${j + 1}`, label: `Q${j + 1}`, stem: L ? stem + optionsSuffix(L.text) : stem, maxPoints: maxes[j], bankKey: stemKey(stem), ...(L ? { options: L.options, key: L.key } : {}) }
   })
   if (idIdx < 0) issues.push({ line: 1, severity: 'info', message: 'Anonymous export: no name or id columns, so students get row-based pseudonyms and no grade import can be built.' })
-  const attempts = body.map((r, i) => ({ ...(idIdx >= 0 ? identity(h, r, opts, idIdx, -1, [nameIdx]) : { id: pseudonym(`anon-${i}`, opts.salt) }), scores: sc[i], choices: ans[i].map((a, j) => (a && lt[j] ? lt[j]!.letterOf.get(a) ?? null : null)) }))
+  // Canvas grade imports match on the Canvas user id, so keep that as the LMS id even when the pseudonym uses sis_id.
+  const canvasId = findCol(h, 'id')
+  const attempts = body.map((r, i) => ({ ...(idIdx >= 0 ? { ...identity(h, r, opts, idIdx, -1, [nameIdx]), ...(canvasId >= 0 && r[canvasId]?.trim() ? { lmsId: r[canvasId].trim() } : {}) } : { id: pseudonym(`anon-${i}`, opts.salt) }), scores: sc[i], choices: ans[i].map((a, j) => (a && lt[j] ? lt[j]!.letterOf.get(a) ?? null : null)) }))
   if (!qs.length) issues.push({ line: 1, severity: 'error', message: 'No question columns ("<id>: <question text>") found.' })
   return { exam: { items, attempts }, issues, columns: h.map((name, i) => ({ name, role: i === idIdx ? 'id' : i === nameIdx ? 'name' : qs.some(q => q.i === i || q.i + 1 === i) ? 'item' : 'meta' })) }
 }

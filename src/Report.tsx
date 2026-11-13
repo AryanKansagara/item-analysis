@@ -59,22 +59,22 @@ export default function Report({ id }: { id: string }) {
         <section>
           <h2>Items needing review</h2>
           {flagged.length === 0 ? <p className="muted">None.</p> : (
-            <table className="data">
+            <div className="table-wrap"><table className="data">
               <thead><tr><th>Item</th><th>p</th><th>D</th><th>r</th><th>Flags</th><th>Recommended action</th></tr></thead>
               <tbody>{flagged.map(s => {
                 const it = m.items.find(i => i.id === s.id)!
                 const sg = suggest(s, it)[0]
                 return <tr key={s.id}><th scope="row">{s.label}</th><td>{f2(s.p)}</td><td>{f2(s.d)}</td><td>{f2(s.rCorrected)}</td><td>{s.flags.map(f => <span key={f} className={`flag f${FLAG_SEVERITY[f]}`} style={{ marginRight: 4 }}>{FLAG_TEXT[f]}</span>)}</td><td className="small">{sg ? <><b>{sg.title}.</b> {sg.evidence}</> : ''}</td></tr>
               })}</tbody>
-            </table>
+            </table></div>
           )}
         </section>
         <section>
           <h2>All items</h2>
-          <table className="data">
+          <div className="table-wrap"><table className="data">
             <thead><tr><th>Item</th><th>Max</th><th>p</th><th>D (27%)</th><th>r pbis</th><th>r corrected</th><th>α if deleted</th></tr></thead>
             <tbody>{b.items.map(s => <tr key={s.id}><th scope="row">{s.label}</th><td>{s.maxPoints}</td><td>{f2(s.p)}</td><td>{f2(s.d)}</td><td>{f2(s.pbis)}</td><td>{f2(s.rCorrected)}</td><td>{f2(s.alphaIfDeleted)}</td></tr>)}</tbody>
-          </table>
+          </table></div>
         </section>
         <section>
           <h2>Method</h2>

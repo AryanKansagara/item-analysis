@@ -512,6 +512,7 @@ strong, b { font-weight: 700; }
   .print-page { background: #fff; padding: 0; }
   .sheet { box-shadow: none; margin: 0; padding: 0; max-width: none; }
   .sheet section { break-inside: avoid; }
+  .table-wrap { overflow: visible; }
 }
 
 /* ---------- Responsive ---------- */

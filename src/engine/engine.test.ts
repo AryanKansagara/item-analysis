@@ -204,7 +204,9 @@ test('Canvas Student Analysis: question and score column pairs', () => {
   assert.equal(p.format, 'canvas-student')
   assert.deepEqual(p.exam.items.map(i => i.maxPoints), [1, 2])
   assert.deepEqual(p.exam.attempts.map(a => a.scores), [[1, 2], [0, 2]])
-  assert.equal(p.exam.attempts[0].lmsId, 'A1')
+  // The Canvas user id, not the SIS id, is what the gradebook import matches on.
+  assert.equal(p.exam.attempts[0].lmsId, '11')
+  assert.equal(parseCsv(canvasCsv(p.exam, [], 'Quiz (7)', 3))[2][1], '11')
 })
 
 test('Moodle responses with grade columns and the overall average row removed', () => {
