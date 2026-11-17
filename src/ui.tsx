@@ -279,7 +279,7 @@ export function Footer() {
       <div className="footer-inner">
         <div className="footer-brand"><Monogram /> <strong>Item Analysis</strong></div>
         <nav className="footer-nav" aria-label="Footer"><Link href="/app">Courses</Link><Link href="/docs">Docs</Link><Link href="/docs#stats">The statistics</Link><Link href="/docs#privacy">Privacy</Link><Link href="/settings">Settings</Link></nav>
-        <p>Built by Aryan Kansagara. Independent project, not affiliated with D2L.</p>
+        <p>Built by Aryan Kansagara.</p>
         <p className="muted small">Sample exams and students are synthetic. Quiz exports are parsed in your browser and stored on this device; student names and scores never sync.</p>
       </div>
     </footer>

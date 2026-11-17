@@ -36,4 +36,4 @@ npm test
 ```
 Optional sync: copy `.env.example` to `.env` and set `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY`.
 
-Built by Aryan Kansagara. Independent project, not affiliated with D2L.
+Built by Aryan Kansagara.
