@@ -1,0 +1,361 @@
+Org Defined ID,Username,FirstName,LastName,Attempt #,Attempt Start,Attempt End,Section #,Q #,Q Type,Q Title,Q Text,Bonus?,Difficulty,Answer,Answer Match,Score,Out Of
+syn001,syn001,Sam,Student01,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Unchecked,0,1
+syn001,syn001,Sam,Student01,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Unchecked,0,1
+syn001,syn001,Sam,Student01,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Checked,0,1
+syn001,syn001,Sam,Student01,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Unchecked,0,1
+syn001,syn001,Sam,Student01,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Unchecked,0,1
+syn001,syn001,Sam,Student01,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Checked,0,1
+syn001,syn001,Sam,Student01,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Checked,0,1
+syn001,syn001,Sam,Student01,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Unchecked,0,1
+syn001,syn001,Sam,Student01,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Unchecked,0,1
+syn001,syn001,Sam,Student01,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Unchecked,1,1
+syn001,syn001,Sam,Student01,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Checked,1,1
+syn001,syn001,Sam,Student01,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Unchecked,1,1
+syn002,syn002,Sam,Student02,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Unchecked,0,1
+syn002,syn002,Sam,Student02,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Unchecked,0,1
+syn002,syn002,Sam,Student02,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Checked,0,1
+syn002,syn002,Sam,Student02,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Unchecked,0,1
+syn002,syn002,Sam,Student02,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Unchecked,0,1
+syn002,syn002,Sam,Student02,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Checked,0,1
+syn002,syn002,Sam,Student02,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Unchecked,0,1
+syn002,syn002,Sam,Student02,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Checked,0,1
+syn002,syn002,Sam,Student02,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Unchecked,0,1
+syn002,syn002,Sam,Student02,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Checked,0,1
+syn002,syn002,Sam,Student02,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Unchecked,0,1
+syn002,syn002,Sam,Student02,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Unchecked,0,1
+syn003,syn003,Sam,Student03,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Checked,1,1
+syn003,syn003,Sam,Student03,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Unchecked,1,1
+syn003,syn003,Sam,Student03,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Unchecked,1,1
+syn003,syn003,Sam,Student03,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Unchecked,0,1
+syn003,syn003,Sam,Student03,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Unchecked,0,1
+syn003,syn003,Sam,Student03,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Checked,0,1
+syn003,syn003,Sam,Student03,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Unchecked,1,1
+syn003,syn003,Sam,Student03,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Unchecked,1,1
+syn003,syn003,Sam,Student03,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Checked,1,1
+syn003,syn003,Sam,Student03,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Unchecked,1,1
+syn003,syn003,Sam,Student03,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Checked,1,1
+syn003,syn003,Sam,Student03,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Unchecked,1,1
+syn004,syn004,Sam,Student04,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Checked,1,1
+syn004,syn004,Sam,Student04,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Unchecked,1,1
+syn004,syn004,Sam,Student04,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Unchecked,1,1
+syn004,syn004,Sam,Student04,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Unchecked,1,1
+syn004,syn004,Sam,Student04,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Checked,1,1
+syn004,syn004,Sam,Student04,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Unchecked,1,1
+syn004,syn004,Sam,Student04,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Unchecked,1,1
+syn004,syn004,Sam,Student04,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Unchecked,1,1
+syn004,syn004,Sam,Student04,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Checked,1,1
+syn004,syn004,Sam,Student04,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Unchecked,0,1
+syn004,syn004,Sam,Student04,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Unchecked,0,1
+syn004,syn004,Sam,Student04,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Checked,0,1
+syn005,syn005,Sam,Student05,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Checked,1,1
+syn005,syn005,Sam,Student05,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Unchecked,1,1
+syn005,syn005,Sam,Student05,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Unchecked,1,1
+syn005,syn005,Sam,Student05,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Unchecked,1,1
+syn005,syn005,Sam,Student05,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Checked,1,1
+syn005,syn005,Sam,Student05,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Unchecked,1,1
+syn005,syn005,Sam,Student05,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Unchecked,1,1
+syn005,syn005,Sam,Student05,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Unchecked,1,1
+syn005,syn005,Sam,Student05,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Checked,1,1
+syn005,syn005,Sam,Student05,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Checked,0,1
+syn005,syn005,Sam,Student05,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Unchecked,0,1
+syn005,syn005,Sam,Student05,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Unchecked,0,1
+syn006,syn006,Sam,Student06,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Unchecked,0,1
+syn006,syn006,Sam,Student06,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Unchecked,0,1
+syn006,syn006,Sam,Student06,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Checked,0,1
+syn006,syn006,Sam,Student06,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Checked,0,1
+syn006,syn006,Sam,Student06,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Unchecked,0,1
+syn006,syn006,Sam,Student06,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Unchecked,0,1
+syn006,syn006,Sam,Student06,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Checked,0,1
+syn006,syn006,Sam,Student06,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Unchecked,0,1
+syn006,syn006,Sam,Student06,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Unchecked,0,1
+syn006,syn006,Sam,Student06,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Checked,0,1
+syn006,syn006,Sam,Student06,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Unchecked,0,1
+syn006,syn006,Sam,Student06,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Unchecked,0,1
+syn007,syn007,Sam,Student07,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Checked,1,1
+syn007,syn007,Sam,Student07,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Unchecked,1,1
+syn007,syn007,Sam,Student07,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Unchecked,1,1
+syn007,syn007,Sam,Student07,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Checked,0,1
+syn007,syn007,Sam,Student07,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Unchecked,0,1
+syn007,syn007,Sam,Student07,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Unchecked,0,1
+syn007,syn007,Sam,Student07,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Unchecked,1,1
+syn007,syn007,Sam,Student07,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Unchecked,1,1
+syn007,syn007,Sam,Student07,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Checked,1,1
+syn007,syn007,Sam,Student07,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Unchecked,0,1
+syn007,syn007,Sam,Student07,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Unchecked,0,1
+syn007,syn007,Sam,Student07,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Checked,0,1
+syn008,syn008,Sam,Student08,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Checked,1,1
+syn008,syn008,Sam,Student08,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Unchecked,1,1
+syn008,syn008,Sam,Student08,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Unchecked,1,1
+syn008,syn008,Sam,Student08,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Checked,0,1
+syn008,syn008,Sam,Student08,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Unchecked,0,1
+syn008,syn008,Sam,Student08,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Unchecked,0,1
+syn008,syn008,Sam,Student08,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Checked,0,1
+syn008,syn008,Sam,Student08,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Unchecked,0,1
+syn008,syn008,Sam,Student08,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Unchecked,0,1
+syn008,syn008,Sam,Student08,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Unchecked,0,1
+syn008,syn008,Sam,Student08,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Unchecked,0,1
+syn008,syn008,Sam,Student08,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Checked,0,1
+syn009,syn009,Sam,Student09,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Unchecked,0,1
+syn009,syn009,Sam,Student09,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Unchecked,0,1
+syn009,syn009,Sam,Student09,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Checked,0,1
+syn009,syn009,Sam,Student09,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Checked,0,1
+syn009,syn009,Sam,Student09,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Unchecked,0,1
+syn009,syn009,Sam,Student09,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Unchecked,0,1
+syn009,syn009,Sam,Student09,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Unchecked,0,1
+syn009,syn009,Sam,Student09,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Checked,0,1
+syn009,syn009,Sam,Student09,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Unchecked,0,1
+syn009,syn009,Sam,Student09,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Unchecked,0,1
+syn009,syn009,Sam,Student09,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Unchecked,0,1
+syn009,syn009,Sam,Student09,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Checked,0,1
+syn010,syn010,Sam,Student10,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Checked,1,1
+syn010,syn010,Sam,Student10,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Unchecked,1,1
+syn010,syn010,Sam,Student10,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Unchecked,1,1
+syn010,syn010,Sam,Student10,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Unchecked,1,1
+syn010,syn010,Sam,Student10,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Checked,1,1
+syn010,syn010,Sam,Student10,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Unchecked,1,1
+syn010,syn010,Sam,Student10,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Unchecked,1,1
+syn010,syn010,Sam,Student10,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Unchecked,1,1
+syn010,syn010,Sam,Student10,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Checked,1,1
+syn010,syn010,Sam,Student10,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Checked,0,1
+syn010,syn010,Sam,Student10,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Unchecked,0,1
+syn010,syn010,Sam,Student10,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Unchecked,0,1
+syn011,syn011,Sam,Student11,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Unchecked,0,1
+syn011,syn011,Sam,Student11,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Checked,0,1
+syn011,syn011,Sam,Student11,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Unchecked,0,1
+syn011,syn011,Sam,Student11,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Unchecked,1,1
+syn011,syn011,Sam,Student11,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Checked,1,1
+syn011,syn011,Sam,Student11,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Unchecked,1,1
+syn011,syn011,Sam,Student11,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Unchecked,0,1
+syn011,syn011,Sam,Student11,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Checked,0,1
+syn011,syn011,Sam,Student11,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Unchecked,0,1
+syn011,syn011,Sam,Student11,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Unchecked,1,1
+syn011,syn011,Sam,Student11,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Checked,1,1
+syn011,syn011,Sam,Student11,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Unchecked,1,1
+syn012,syn012,Sam,Student12,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Checked,1,1
+syn012,syn012,Sam,Student12,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Unchecked,1,1
+syn012,syn012,Sam,Student12,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Unchecked,1,1
+syn012,syn012,Sam,Student12,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Checked,0,1
+syn012,syn012,Sam,Student12,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Unchecked,0,1
+syn012,syn012,Sam,Student12,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Unchecked,0,1
+syn012,syn012,Sam,Student12,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Unchecked,0,1
+syn012,syn012,Sam,Student12,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Checked,0,1
+syn012,syn012,Sam,Student12,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Unchecked,0,1
+syn012,syn012,Sam,Student12,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Unchecked,0,1
+syn012,syn012,Sam,Student12,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Unchecked,0,1
+syn012,syn012,Sam,Student12,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Checked,0,1
+syn013,syn013,Sam,Student13,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Checked,1,1
+syn013,syn013,Sam,Student13,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Unchecked,1,1
+syn013,syn013,Sam,Student13,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Unchecked,1,1
+syn013,syn013,Sam,Student13,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Unchecked,1,1
+syn013,syn013,Sam,Student13,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Checked,1,1
+syn013,syn013,Sam,Student13,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Unchecked,1,1
+syn013,syn013,Sam,Student13,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Checked,0,1
+syn013,syn013,Sam,Student13,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Unchecked,0,1
+syn013,syn013,Sam,Student13,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Unchecked,0,1
+syn013,syn013,Sam,Student13,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Checked,0,1
+syn013,syn013,Sam,Student13,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Unchecked,0,1
+syn013,syn013,Sam,Student13,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Unchecked,0,1
+syn014,syn014,Sam,Student14,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Checked,1,1
+syn014,syn014,Sam,Student14,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Unchecked,1,1
+syn014,syn014,Sam,Student14,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Unchecked,1,1
+syn014,syn014,Sam,Student14,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Unchecked,1,1
+syn014,syn014,Sam,Student14,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Checked,1,1
+syn014,syn014,Sam,Student14,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Unchecked,1,1
+syn014,syn014,Sam,Student14,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Unchecked,1,1
+syn014,syn014,Sam,Student14,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Unchecked,1,1
+syn014,syn014,Sam,Student14,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Checked,1,1
+syn014,syn014,Sam,Student14,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Unchecked,1,1
+syn014,syn014,Sam,Student14,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Checked,1,1
+syn014,syn014,Sam,Student14,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Unchecked,1,1
+syn015,syn015,Sam,Student15,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Checked,1,1
+syn015,syn015,Sam,Student15,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Unchecked,1,1
+syn015,syn015,Sam,Student15,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Unchecked,1,1
+syn015,syn015,Sam,Student15,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Checked,0,1
+syn015,syn015,Sam,Student15,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Unchecked,0,1
+syn015,syn015,Sam,Student15,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Unchecked,0,1
+syn015,syn015,Sam,Student15,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Checked,0,1
+syn015,syn015,Sam,Student15,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Unchecked,0,1
+syn015,syn015,Sam,Student15,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Unchecked,0,1
+syn015,syn015,Sam,Student15,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Checked,0,1
+syn015,syn015,Sam,Student15,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Unchecked,0,1
+syn015,syn015,Sam,Student15,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Unchecked,0,1
+syn016,syn016,Sam,Student16,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Unchecked,0,1
+syn016,syn016,Sam,Student16,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Unchecked,0,1
+syn016,syn016,Sam,Student16,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Checked,0,1
+syn016,syn016,Sam,Student16,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Checked,0,1
+syn016,syn016,Sam,Student16,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Unchecked,0,1
+syn016,syn016,Sam,Student16,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Unchecked,0,1
+syn016,syn016,Sam,Student16,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Unchecked,1,1
+syn016,syn016,Sam,Student16,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Unchecked,1,1
+syn016,syn016,Sam,Student16,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Checked,1,1
+syn016,syn016,Sam,Student16,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Unchecked,0,1
+syn016,syn016,Sam,Student16,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Unchecked,0,1
+syn016,syn016,Sam,Student16,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Checked,0,1
+syn017,syn017,Sam,Student17,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Checked,1,1
+syn017,syn017,Sam,Student17,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Unchecked,1,1
+syn017,syn017,Sam,Student17,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Unchecked,1,1
+syn017,syn017,Sam,Student17,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Unchecked,1,1
+syn017,syn017,Sam,Student17,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Checked,1,1
+syn017,syn017,Sam,Student17,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Unchecked,1,1
+syn017,syn017,Sam,Student17,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Unchecked,1,1
+syn017,syn017,Sam,Student17,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Unchecked,1,1
+syn017,syn017,Sam,Student17,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Checked,1,1
+syn017,syn017,Sam,Student17,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Unchecked,1,1
+syn017,syn017,Sam,Student17,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Checked,1,1
+syn017,syn017,Sam,Student17,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Unchecked,1,1
+syn018,syn018,Sam,Student18,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Unchecked,0,1
+syn018,syn018,Sam,Student18,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Unchecked,0,1
+syn018,syn018,Sam,Student18,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Checked,0,1
+syn018,syn018,Sam,Student18,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Unchecked,1,1
+syn018,syn018,Sam,Student18,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Checked,1,1
+syn018,syn018,Sam,Student18,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Unchecked,1,1
+syn018,syn018,Sam,Student18,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Unchecked,1,1
+syn018,syn018,Sam,Student18,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Unchecked,1,1
+syn018,syn018,Sam,Student18,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Checked,1,1
+syn018,syn018,Sam,Student18,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Unchecked,1,1
+syn018,syn018,Sam,Student18,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Checked,1,1
+syn018,syn018,Sam,Student18,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Unchecked,1,1
+syn019,syn019,Sam,Student19,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Checked,1,1
+syn019,syn019,Sam,Student19,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Unchecked,1,1
+syn019,syn019,Sam,Student19,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Unchecked,1,1
+syn019,syn019,Sam,Student19,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Unchecked,1,1
+syn019,syn019,Sam,Student19,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Checked,1,1
+syn019,syn019,Sam,Student19,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Unchecked,1,1
+syn019,syn019,Sam,Student19,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Unchecked,1,1
+syn019,syn019,Sam,Student19,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Unchecked,1,1
+syn019,syn019,Sam,Student19,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Checked,1,1
+syn019,syn019,Sam,Student19,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Unchecked,1,1
+syn019,syn019,Sam,Student19,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Checked,1,1
+syn019,syn019,Sam,Student19,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Unchecked,1,1
+syn020,syn020,Sam,Student20,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Checked,1,1
+syn020,syn020,Sam,Student20,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Unchecked,1,1
+syn020,syn020,Sam,Student20,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Unchecked,1,1
+syn020,syn020,Sam,Student20,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Unchecked,1,1
+syn020,syn020,Sam,Student20,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Checked,1,1
+syn020,syn020,Sam,Student20,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Unchecked,1,1
+syn020,syn020,Sam,Student20,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Unchecked,1,1
+syn020,syn020,Sam,Student20,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Unchecked,1,1
+syn020,syn020,Sam,Student20,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Checked,1,1
+syn020,syn020,Sam,Student20,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Unchecked,1,1
+syn020,syn020,Sam,Student20,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Checked,1,1
+syn020,syn020,Sam,Student20,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Unchecked,1,1
+syn021,syn021,Sam,Student21,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Unchecked,0,1
+syn021,syn021,Sam,Student21,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Checked,0,1
+syn021,syn021,Sam,Student21,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Unchecked,0,1
+syn021,syn021,Sam,Student21,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Unchecked,0,1
+syn021,syn021,Sam,Student21,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Unchecked,0,1
+syn021,syn021,Sam,Student21,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Checked,0,1
+syn021,syn021,Sam,Student21,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Checked,0,1
+syn021,syn021,Sam,Student21,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Unchecked,0,1
+syn021,syn021,Sam,Student21,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Unchecked,0,1
+syn021,syn021,Sam,Student21,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Checked,0,1
+syn021,syn021,Sam,Student21,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Unchecked,0,1
+syn021,syn021,Sam,Student21,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Unchecked,0,1
+syn022,syn022,Sam,Student22,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Checked,1,1
+syn022,syn022,Sam,Student22,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Unchecked,1,1
+syn022,syn022,Sam,Student22,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Unchecked,1,1
+syn022,syn022,Sam,Student22,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Unchecked,1,1
+syn022,syn022,Sam,Student22,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Checked,1,1
+syn022,syn022,Sam,Student22,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Unchecked,1,1
+syn022,syn022,Sam,Student22,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Checked,0,1
+syn022,syn022,Sam,Student22,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Unchecked,0,1
+syn022,syn022,Sam,Student22,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Unchecked,0,1
+syn022,syn022,Sam,Student22,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Unchecked,0,1
+syn022,syn022,Sam,Student22,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Unchecked,0,1
+syn022,syn022,Sam,Student22,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Checked,0,1
+syn023,syn023,Sam,Student23,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Checked,1,1
+syn023,syn023,Sam,Student23,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Unchecked,1,1
+syn023,syn023,Sam,Student23,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Unchecked,1,1
+syn023,syn023,Sam,Student23,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Unchecked,1,1
+syn023,syn023,Sam,Student23,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Checked,1,1
+syn023,syn023,Sam,Student23,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Unchecked,1,1
+syn023,syn023,Sam,Student23,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Unchecked,1,1
+syn023,syn023,Sam,Student23,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Unchecked,1,1
+syn023,syn023,Sam,Student23,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Checked,1,1
+syn023,syn023,Sam,Student23,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Unchecked,0,1
+syn023,syn023,Sam,Student23,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Unchecked,0,1
+syn023,syn023,Sam,Student23,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Checked,0,1
+syn024,syn024,Sam,Student24,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Checked,1,1
+syn024,syn024,Sam,Student24,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Unchecked,1,1
+syn024,syn024,Sam,Student24,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Unchecked,1,1
+syn024,syn024,Sam,Student24,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Unchecked,0,1
+syn024,syn024,Sam,Student24,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Unchecked,0,1
+syn024,syn024,Sam,Student24,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Checked,0,1
+syn024,syn024,Sam,Student24,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Unchecked,1,1
+syn024,syn024,Sam,Student24,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Unchecked,1,1
+syn024,syn024,Sam,Student24,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Checked,1,1
+syn024,syn024,Sam,Student24,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Unchecked,1,1
+syn024,syn024,Sam,Student24,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Checked,1,1
+syn024,syn024,Sam,Student24,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Unchecked,1,1
+syn025,syn025,Sam,Student25,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Checked,1,1
+syn025,syn025,Sam,Student25,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Unchecked,1,1
+syn025,syn025,Sam,Student25,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Unchecked,1,1
+syn025,syn025,Sam,Student25,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Unchecked,0,1
+syn025,syn025,Sam,Student25,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Unchecked,0,1
+syn025,syn025,Sam,Student25,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Checked,0,1
+syn025,syn025,Sam,Student25,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Unchecked,1,1
+syn025,syn025,Sam,Student25,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Unchecked,1,1
+syn025,syn025,Sam,Student25,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Checked,1,1
+syn025,syn025,Sam,Student25,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Checked,0,1
+syn025,syn025,Sam,Student25,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Unchecked,0,1
+syn025,syn025,Sam,Student25,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Unchecked,0,1
+syn026,syn026,Sam,Student26,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Checked,1,1
+syn026,syn026,Sam,Student26,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Unchecked,1,1
+syn026,syn026,Sam,Student26,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Unchecked,1,1
+syn026,syn026,Sam,Student26,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Unchecked,1,1
+syn026,syn026,Sam,Student26,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Checked,1,1
+syn026,syn026,Sam,Student26,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Unchecked,1,1
+syn026,syn026,Sam,Student26,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Unchecked,1,1
+syn026,syn026,Sam,Student26,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Unchecked,1,1
+syn026,syn026,Sam,Student26,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Checked,1,1
+syn026,syn026,Sam,Student26,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Unchecked,1,1
+syn026,syn026,Sam,Student26,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Checked,1,1
+syn026,syn026,Sam,Student26,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Unchecked,1,1
+syn027,syn027,Sam,Student27,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Checked,1,1
+syn027,syn027,Sam,Student27,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Unchecked,1,1
+syn027,syn027,Sam,Student27,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Unchecked,1,1
+syn027,syn027,Sam,Student27,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Unchecked,1,1
+syn027,syn027,Sam,Student27,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Checked,1,1
+syn027,syn027,Sam,Student27,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Unchecked,1,1
+syn027,syn027,Sam,Student27,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Unchecked,1,1
+syn027,syn027,Sam,Student27,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Unchecked,1,1
+syn027,syn027,Sam,Student27,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Checked,1,1
+syn027,syn027,Sam,Student27,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Unchecked,1,1
+syn027,syn027,Sam,Student27,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Checked,1,1
+syn027,syn027,Sam,Student27,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Unchecked,1,1
+syn028,syn028,Sam,Student28,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Unchecked,0,1
+syn028,syn028,Sam,Student28,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Unchecked,0,1
+syn028,syn028,Sam,Student28,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Checked,0,1
+syn028,syn028,Sam,Student28,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Checked,0,1
+syn028,syn028,Sam,Student28,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Unchecked,0,1
+syn028,syn028,Sam,Student28,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Unchecked,0,1
+syn028,syn028,Sam,Student28,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Unchecked,1,1
+syn028,syn028,Sam,Student28,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Unchecked,1,1
+syn028,syn028,Sam,Student28,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Checked,1,1
+syn028,syn028,Sam,Student28,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Unchecked,0,1
+syn028,syn028,Sam,Student28,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Unchecked,0,1
+syn028,syn028,Sam,Student28,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Checked,0,1
+syn029,syn029,Sam,Student29,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Unchecked,0,1
+syn029,syn029,Sam,Student29,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Checked,0,1
+syn029,syn029,Sam,Student29,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Unchecked,0,1
+syn029,syn029,Sam,Student29,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Unchecked,1,1
+syn029,syn029,Sam,Student29,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Checked,1,1
+syn029,syn029,Sam,Student29,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Unchecked,1,1
+syn029,syn029,Sam,Student29,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Checked,0,1
+syn029,syn029,Sam,Student29,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Unchecked,0,1
+syn029,syn029,Sam,Student29,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Unchecked,0,1
+syn029,syn029,Sam,Student29,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Unchecked,1,1
+syn029,syn029,Sam,Student29,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Checked,1,1
+syn029,syn029,Sam,Student29,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Unchecked,1,1
+syn030,syn030,Sam,Student30,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Mitochondrion",Unchecked,0,1
+syn030,syn030,Sam,Student30,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Ribosome",Checked,0,1
+syn030,syn030,Sam,Student30,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,1,MC,Cells,"Which organelle produces most of the cell's ATP?",FALSE,1,"Golgi body",Unchecked,0,1
+syn030,syn030,Sam,Student30,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Cell wall",Checked,0,1
+syn030,syn030,Sam,Student30,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Plasma membrane",Unchecked,0,1
+syn030,syn030,Sam,Student30,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,1,2,MC,Cells,"Which structure controls what enters the cell?",FALSE,1,"Nucleolus",Unchecked,0,1
+syn030,syn030,Sam,Student30,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Adenine",Checked,0,1
+syn030,syn030,Sam,Student30,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Thymine",Unchecked,0,1
+syn030,syn030,Sam,Student30,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,1,MC,Genetics,"Which base pairs with guanine in DNA?",FALSE,1,"Cytosine",Unchecked,0,1
+syn030,syn030,Sam,Student30,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Homozygous",Unchecked,0,1
+syn030,syn030,Sam,Student30,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Heterozygous",Unchecked,0,1
+syn030,syn030,Sam,Student30,1,2026-10-01 9:00 AM,2026-10-01 9:30 AM,2,2,MC,Genetics,"What do you call two different alleles of one gene?",FALSE,1,"Hemizygous",Checked,0,1

@@ -116,3 +116,31 @@ test('the app works signed out with every outside request blocked', async ({ app
   await expect(page.locator('.kpis')).toBeVisible()
   expect(blocked.filter(u => /supabase/i.test(u))).toEqual([])
 })
+
+test('Brightspace export where Q1 and Q2 restart in each section: distinct labels from import to regrade', async ({ app: page }) => {
+  await page.goto('/app')
+  await page.getByRole('button', { name: 'Import your data' }).first().click()
+  await page.waitForURL(/\/import$/)
+  await page.locator('input[type=file]').setInputFiles({ name: 'brightspace-two-sections.csv', mimeType: 'text/csv', buffer: csv('brightspace-two-sections.csv') })
+  const validation = page.locator('.panel', { has: page.getByRole('heading', { name: '3. Validation' }) })
+  await expect(validation).toContainText('Ready')
+  await expect(validation).toContainText('4 questions were renamed so each is distinct: Q1 (S1), Q2 (S1), Q1 (S2), Q2 (S2)')
+  await page.getByRole('button', { name: 'Import and analyse' }).click()
+  await page.waitForURL(/\/app\/p\/[\w-]+\?exam=/)
+
+  const nav = page.getByRole('navigation', { name: 'Course sections' })
+  await nav.getByRole('link', { name: /^Items/ }).click()
+  const labels = page.locator('table.data tbody th[scope=row]')
+  await expect(labels).toHaveText(['Q1 (S1)', 'Q2 (S1)', 'Q1 (S2)', 'Q2 (S2)'])
+
+  // Open the second section's Q1: the drawer, the regrade list and the student summary all name it the same way.
+  await labels.nth(2).getByRole('button').click()
+  const drawer = page.getByRole('dialog', { name: 'Item Q1 (S2)' })
+  await expect(drawer).toContainText('Which base pairs with guanine in DNA?')
+  await drawer.getByRole('radio', { name: 'Drop' }).click()
+  await page.getByRole('button', { name: 'Close' }).click()
+  await nav.getByRole('link', { name: 'Regrade' }).click()
+  await expect(page.locator('.adj')).toHaveText(/Drop Q1 \(S2\)/)
+  await expect(page.locator('pre.code')).toContainText('Drop Q1 (S2)')
+  await expect(page.locator('pre.code')).not.toContainText('Q1 (S1)')
+})

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { brightspaceCsv, canvasCsv, classSummary, compare, snapshotOf, trend } from './actions.ts'
-import { detect, parse, parseCsv, pseudonym, toCsv } from './importer.ts'
+import { detect, parse, parseCsv, pseudonym, stemKey, toCsv } from './importer.ts'
 import { SAMPLES } from './sample.ts'
 import { alphaOf, analyze, band, impact, pearson, quantile, rescore, suggest, totals } from './stats.ts'
 import { DEFAULT_BANDS, type Exam } from './types.ts'
@@ -402,4 +402,109 @@ test('Brightspace bonus question adds to the score but not to the maximum', () =
   assert.deepEqual(ex.items.map(i => !!i.bonus), [false, true])
   assert.equal(analyze(ex).test.maxTotal, 1)
   assert.deepEqual(parseCsv(brightspaceCsv(ex, [], 'Quiz', 10)).slice(1).map(r => r[2]), ['20', '10'])
+})
+
+// ---- Brightspace: question numbers that restart in each section ----
+
+interface BsQ { sec: number | string; q: string; text: string; opts: string[]; key: number }
+const BS_HEAD = 'Org Defined ID,Username,FirstName,LastName,Attempt #,Section #,Q #,Q Title,Q Text,Answer,Answer Match,Score,Out Of'
+const BS_QS: BsQ[] = [
+  { sec: 1, q: '1', text: 'Which organelle makes ATP', opts: ['Mitochondrion', 'Ribosome'], key: 0 },
+  { sec: 1, q: '2', text: 'Which structure gates the cell', opts: ['Cell wall', 'Plasma membrane'], key: 1 },
+  { sec: 2, q: '1', text: 'Which base pairs with guanine', opts: ['Adenine', 'Cytosine'], key: 1 },
+  { sec: 2, q: '2', text: 'Two different alleles are called', opts: ['Homozygous', 'Heterozygous'], key: 1 },
+  { sec: 2, q: '3', text: 'Which process copies DNA', opts: ['Replication', 'Translation'], key: 0 },
+]
+/** Long-format attempt rows for 8 synthetic students; student i misses question j when (i + j) % 3 === 0. */
+function bsRows(qs: BsQ[], opts: { section?: boolean; text?: boolean; students?: number[] } = {}) {
+  const { section = true, text = true, students = [0, 1, 2, 3, 4, 5, 6, 7] } = opts
+  const head = (section ? BS_HEAD : BS_HEAD.replace('Section #,', '')).split(',').filter(x => text || !/Q Title|Q Text/.test(x)).join(',')
+  const out: string[] = []
+  for (const i of students) qs.forEach((q, j) => {
+    const right = (i + j) % 3 !== 0
+    const pick = right ? q.key : 1 - q.key
+    q.opts.forEach((o, k) => {
+      const cells = [`s${i}`, `s${i}`, 'Syn', `Student${i}`, '1', ...(section ? [String(q.sec)] : []), q.q, ...(text ? ['T', q.text] : []), o, k === pick ? 'Checked' : 'Unchecked', right ? '1' : '0', '1']
+      out.push(cells.join(','))
+    })
+  })
+  return [head, ...out].join('\n')
+}
+const stemLabel = (p: ReturnType<typeof parse>) => Object.fromEntries(p.exam.items.map(i => [i.stem!.split('\n')[0], i.label]))
+
+test('Brightspace: Q1 and Q2 that restart in each section get distinct labels, unique ones stay', () => {
+  const p = parse(bsRows(BS_QS), { salt: 's' })
+  assert.equal(p.format, 'd2l-attempts')
+  assert.deepEqual(p.exam.items.map(i => i.label), ['Q1 (S1)', 'Q2 (S1)', 'Q1 (S2)', 'Q2 (S2)', 'Q3'])
+  assert.equal(new Set(p.exam.items.map(i => i.label)).size, 5)
+  const note = p.issues.find(i => /renamed/.test(i.message))
+  assert.ok(note && note.severity === 'info' && /Q1/.test(note.message) && /Q1 \(S2\)/.test(note.message), 'validation says labels were renamed')
+  // An export whose numbers are already unique is untouched and says nothing.
+  const flat = parse(bsRows(BS_QS.map((q, j) => ({ ...q, q: String(j + 1) }))), { salt: 's' })
+  assert.deepEqual(flat.exam.items.map(i => i.label), ['Q1', 'Q2', 'Q3', 'Q4', 'Q5'])
+  assert.ok(!flat.issues.some(i => /renamed/.test(i.message)))
+})
+
+test('Brightspace: renaming changes no score, choice, key, statistic or regrade', () => {
+  const dup = parse(bsRows(BS_QS), { salt: 's' }).exam
+  const flat = parse(bsRows(BS_QS.map((q, j) => ({ ...q, q: String(j + 1) }))), { salt: 's' }).exam
+  assert.deepEqual(dup.attempts, flat.attempts)
+  assert.deepEqual(dup.items.map(({ label: _l, bankKey: _b, ...rest }) => rest), flat.items.map(({ label: _l, bankKey: _b, ...rest }) => rest))
+  assert.deepEqual(dup.items.map(i => i.bankKey), flat.items.map(i => i.bankKey))
+  const strip = (a: ReturnType<typeof analyze>) => a.items.map(({ label: _l, ...rest }) => rest)
+  assert.deepEqual(strip(analyze(dup)), strip(analyze(flat)))
+  const adj = [{ itemId: 'q3', kind: 'drop' as const }, { itemId: 'q4', kind: 'accept' as const, accept: ['A'] }]
+  assert.deepEqual(impact(dup, rescore(dup, adj), DEFAULT_BANDS), impact(flat, rescore(flat, adj), DEFAULT_BANDS))
+  assert.deepEqual(analyze(rescore(dup, adj)).items.map(i => i.p), analyze(rescore(flat, adj)).items.map(i => i.p))
+  // Items with text keep the key they always had, so term-to-term history still matches.
+  assert.deepEqual(dup.items.map(i => i.bankKey), BS_QS.map(q => stemKey(q.text)))
+})
+
+test('Brightspace: with a Section # the labels do not depend on student order', () => {
+  const a = parse(bsRows(BS_QS), { salt: 's' })
+  const b = parse(bsRows(BS_QS, { students: [7, 3, 0, 5, 1, 6, 2, 4] }), { salt: 's' })
+  assert.deepEqual(stemLabel(a), stemLabel(b))
+  // Even when another student's rows start with a later question.
+  const rev = parse(bsRows([...BS_QS].reverse(), { students: [4, 2] }) + '\n' + bsRows(BS_QS, { students: [0, 1, 3] }).split('\n').slice(1).join('\n'), { salt: 's' })
+  assert.deepEqual(stemLabel(rev), stemLabel(a))
+})
+
+test('Brightspace: without a Section # duplicates are numbered in order of appearance', () => {
+  const p = parse(bsRows(BS_QS, { section: false }), { salt: 's' })
+  assert.deepEqual(p.exam.items.map(i => i.label), ['Q1 (1)', 'Q2 (1)', 'Q1 (2)', 'Q2 (2)', 'Q3'])
+  assert.ok(p.issues.some(i => /renamed/.test(i.message) && /order of appearance/.test(i.message)))
+  // Same students in another order, same question order within each attempt: same labels.
+  const q = parse(bsRows(BS_QS, { section: false, students: [5, 2, 7, 0, 1, 3, 4, 6] }), { salt: 's' })
+  assert.deepEqual(stemLabel(q), stemLabel(p))
+})
+
+test('Brightspace: duplicates that share a section number fall back to the order of appearance', () => {
+  const same = BS_QS.map(q => ({ ...q, sec: 1 }))
+  assert.deepEqual(parse(bsRows(same), { salt: 's' }).exam.items.map(i => i.label), ['Q1 (1)', 'Q2 (1)', 'Q1 (2)', 'Q2 (2)', 'Q3'])
+})
+
+test('Brightspace: a generated label never collides with a label the export really has', () => {
+  const qs: BsQ[] = [
+    { sec: 1, q: '1', text: 'First', opts: ['A', 'B'], key: 0 },
+    { sec: 2, q: '1', text: 'Second', opts: ['A', 'B'], key: 0 },
+    { sec: 3, q: '1 (S1)', text: 'Odd numbering', opts: ['A', 'B'], key: 1 },
+  ]
+  const items = parse(bsRows(qs), { salt: 's' }).exam.items
+  const labels = items.map(i => i.label)
+  assert.equal(new Set(labels).size, 3)
+  assert.equal(labels[2], 'Q1 (S1)', 'the export\'s own label is kept')
+  assert.equal(new Set(items.map(i => i.bankKey)).size, 3)
+})
+
+test('Brightspace: questions without text stay separate items with their own bank keys', () => {
+  const p = parse(bsRows(BS_QS, { text: false }), { salt: 's' })
+  const { items, attempts } = p.exam
+  assert.deepEqual(items.map(i => i.label), ['Q1 (S1)', 'Q2 (S1)', 'Q1 (S2)', 'Q2 (S2)', 'Q3'])
+  assert.equal(new Set(items.map(i => i.bankKey)).size, 5)
+  // Scores are those of each question, not of whichever section was read last.
+  const withText = parse(bsRows(BS_QS), { salt: 's' }).exam.attempts
+  assert.deepEqual(attempts.map(a => a.scores), withText.map(a => a.scores))
+  // A text-less export with unique numbers keeps its label as the bank key, as before.
+  const flat = parse(bsRows(BS_QS.map((q, j) => ({ ...q, q: String(j + 1) })), { text: false }), { salt: 's' }).exam.items
+  assert.deepEqual(flat.map(i => i.bankKey), ['Q1', 'Q2', 'Q3', 'Q4', 'Q5'])
 })
