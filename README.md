@@ -30,10 +30,13 @@ LMS quiz statistics are hard to find, harder to read, and stop short of the fix.
 
 ## Run locally
 ```
-npm install
+npm ci
 npm run dev
 npm test
+npm run test:e2e
 ```
+`npm test` runs the engine tests. `npm run test:e2e` builds the app and drives the production build (served by `vite preview` on port 4817, override with `E2E_PORT`) in Chromium with Playwright: sample course, regrade, CSV import, bad files, reload persistence and a signed-out run with Supabase blocked. Install the browser once with `npx playwright install chromium`. The same steps run in GitHub Actions on pull requests and on `main`.
+
 Optional sync: copy `.env.example` to `.env` and set `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY`.
 
 Built by Aryan Kansagara.
