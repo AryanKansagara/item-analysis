@@ -193,11 +193,12 @@ function parseD2lAttempts(rows: string[][], opts: ParseOptions): Omit<Parsed, 'f
     org: findCol(h, 'Org Defined ID', 'OrgDefinedId'), user: findCol(h, 'Username', 'User Name'), first: findCol(h, 'FirstName', 'First Name'), last: findCol(h, 'LastName', 'Last Name'),
     attempt: findCol(h, 'Attempt #', 'Attempt'), qn: findCol(h, 'Q #', 'Q Num', 'Question #'), qtitle: findCol(h, 'Q Title'), qtext: findCol(h, 'Q Text', 'Question'),
     answer: findCol(h, 'Answer'), match: findCol(h, 'Answer Match'), score: findCol(h, 'Score'), out: findCol(h, 'Out Of'), bonus: findCol(h, 'Bonus?'),
+    section: findCol(h, 'Section #'),
   }
   if (c.score < 0) issues.push({ line: 1, severity: 'error', message: 'No "Score" column. Export with question scores included.' })
   const idIdx = c.org >= 0 ? c.org : c.user
   const qKeys: string[] = []
-  const qInfo = new Map<string, { label: string; stem?: string; max: number; bonus: boolean }>()
+  const qInfo = new Map<string, { label: string; stem?: string; max: number; bonus: boolean; section?: string }>()
   const studs = new Map<string, { who: ReturnType<typeof identity>; att: string; score: Map<string, number>; choice: Map<string, string> }>()
   let multi = false
   rows.slice(1).forEach((r, bi) => {
@@ -205,11 +206,14 @@ function parseD2lAttempts(rows: string[][], opts: ParseOptions): Omit<Parsed, 'f
     const who = identity(h, r, opts, idIdx, c.user, [c.first, c.last].filter(i => i >= 0))
     if (!who.id) { issues.push({ line, severity: 'warning', message: 'No Org Defined ID or Username; row skipped.' }); return }
     const att = c.attempt >= 0 ? (r[c.attempt] ?? '1').trim() : '1'
-    const qk = (c.qn >= 0 ? r[c.qn] : '') + '|' + (c.qtext >= 0 ? r[c.qtext] : c.qtitle >= 0 ? r[c.qtitle] : '')
+    const text = c.qtext >= 0 ? r[c.qtext] : c.qtitle >= 0 ? r[c.qtitle] : ''
+    const section = c.section >= 0 ? (r[c.section] ?? '').trim() : ''
+    // Questions are told apart by number and text. Without text the number alone would merge Q1 of one section with Q1 of another, so the section joins the key.
+    const qk = (c.qn >= 0 ? r[c.qn] : '') + '|' + text + (!text?.trim() && section ? `|section ${section}` : '')
     if (!qInfo.has(qk)) {
       qKeys.push(qk)
-      const stem = (c.qtext >= 0 ? r[c.qtext] : c.qtitle >= 0 ? r[c.qtitle] : '')?.trim()
-      qInfo.set(qk, { label: c.qn >= 0 && r[c.qn]?.trim() ? `Q${r[c.qn].trim()}` : `Q${qKeys.length}`, stem: stem || undefined, max: num(r[c.out]) || 1, bonus: c.bonus >= 0 && /^(true|yes|1)$/i.test((r[c.bonus] ?? '').trim()) })
+      const stem = text?.trim()
+      qInfo.set(qk, { label: c.qn >= 0 && r[c.qn]?.trim() ? `Q${r[c.qn].trim()}` : `Q${qKeys.length}`, stem: stem || undefined, max: num(r[c.out]) || 1, bonus: c.bonus >= 0 && /^(true|yes|1)$/i.test((r[c.bonus] ?? '').trim()), section: section || undefined })
     }
     let s = studs.get(who.id)
     if (s && s.att !== att) {
@@ -234,15 +238,46 @@ function parseD2lAttempts(rows: string[][], opts: ParseOptions): Omit<Parsed, 'f
   const sc = list.map(s => qKeys.map(k => s.score.get(k) ?? null))
   const ans = list.map(s => qKeys.map(k => s.choice.get(k) ?? null))
   const lt = lettered(ans, sc, maxes)
+  const labels = disambiguate(qKeys.map(k => qInfo.get(k)!))
+  const renamed = qKeys.map((k, j) => ({ from: qInfo.get(k)!.label, to: labels[j] })).filter(x => x.from !== x.to)
+  if (renamed.length) {
+    const repeated = [...new Set(renamed.map(x => x.from))]
+    issues.push({ line: 0, severity: 'info', message: `${repeated.slice(0, 5).join(', ')}${repeated.length > 5 ? ', …' : ''} ${repeated.length > 1 ? 'are' : 'is'} used by more than one question (numbering restarts in each section). ${renamed.length} questions were renamed so each is distinct: ${renamed.slice(0, 4).map(x => x.to).join(', ')}${renamed.length > 4 ? ', …' : ''}. The section number is used when the export has one, otherwise the order of appearance.` })
+  }
   const items: Item[] = qKeys.map((k, j) => {
     const q = qInfo.get(k)!
     const L = lt[j]
-    return { id: `q${j + 1}`, label: q.label, stem: q.stem, maxPoints: q.max, ...(q.bonus ? { bonus: true } : {}), bankKey: q.stem ? stemKey(q.stem) : q.label, ...(L ? { options: L.options, key: L.key } : {}) }
+    return { id: `q${j + 1}`, label: labels[j], stem: q.stem, maxPoints: q.max, ...(q.bonus ? { bonus: true } : {}), bankKey: q.stem ? stemKey(q.stem) : labels[j], ...(L ? { options: L.options, key: L.key } : {}) }
   })
   const attempts: Attempt[] = list.map((s, i) => ({ ...s.who, scores: sc[i], ...(lt.some(Boolean) ? { choices: ans[i].map((a, j) => (a && lt[j] ? lt[j]!.letterOf.get(a) ?? null : null)) } : {}) }))
   const optText = lt.map(L => L?.text)
   return { exam: { items: items.map((it, j) => (optText[j] ? { ...it, stem: (it.stem ?? '') + optionsSuffix(optText[j]!) } : it)), attempts }, issues, columns: h.map((name, i) => ({ name, role: i === idIdx ? 'id' : [c.first, c.last, c.user].includes(i) ? 'name' : [c.qn, c.qtext, c.answer, c.match, c.score, c.out].includes(i) ? 'item' : 'meta' })), multipleAttempts: multi }
 }
+
+/**
+ * Gives items that share a label distinct ones and leaves unique labels alone. A duplicated "Q1" becomes "Q1 (S2)" from its
+ * Section # when every duplicate has a different one (the name then does not depend on row order), otherwise "Q1 (1)", "Q1 (2)"
+ * in order of first appearance in the file. A generated label that equals a label the export really has gets a trailing "'".
+ */
+function disambiguate(qs: { label: string; section?: string }[]): string[] {
+  const count = new Map<string, number>()
+  for (const q of qs) count.set(q.label, (count.get(q.label) ?? 0) + 1)
+  const taken = new Set(qs.map(q => q.label).filter(l => count.get(l) === 1))
+  const seen = new Map<string, number>()
+  return qs.map(q => {
+    if (count.get(q.label) === 1) return q.label
+    const group = qs.filter(x => x.label === q.label)
+    const bySection = group.every(x => x.section) && new Set(group.map(x => x.section)).size === group.length
+    const n = (seen.get(q.label) ?? 0) + 1
+    seen.set(q.label, n)
+    const tag = bySection ? (/^\d+$/.test(q.section!) ? `S${q.section}` : q.section!) : String(n)
+    let label = `${q.label} (${tag})`
+    while (taken.has(label)) label += "'"
+    taken.add(label)
+    return label
+  })
+}
+
 const optionsSuffix = (t: string[]) => '\n' + t.map((x, i) => `${letters(i)}. ${x}`).join('\n')
 
 function parseCanvasStudent(rows: string[][], opts: ParseOptions): Omit<Parsed, 'format'> {

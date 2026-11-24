@@ -25,7 +25,7 @@ LMS quiz statistics are hard to find, harder to read, and stop short of the fix.
 
 ## Known gaps
 - Reliability is withheld when no student saw every item (pure random pools); a pairwise estimate is not implemented.
-- Brightspace questions are labelled by `Q #`; if a quiz restarts numbering per section, two items can share a label (they are still kept apart by text).
+- Brightspace questions are labelled by `Q #`. When two questions share a number (for example numbering restarts in each section), they are renamed `Q1 (S1)`, `Q1 (S2)` from the export's `Section #` column, and the import report says so. If the duplicates have no distinct `Section #`, they are numbered `Q1 (1)`, `Q1 (2)` in order of first appearance in the file, which can change if students' rows list the questions in a different order. Labels that are already unique are never changed. Two questions with no text, the same number and no `Section #` cannot be told apart and are read as one item. `Section #` is used only as a value that tells questions apart; its meaning is not documented in the Brightspace help pages we could find, and none of this has been run against a real Brightspace export.
 - Canvas New Quizzes item analysis exports are not yet covered; use Student Analysis.
 
 ## Run locally
